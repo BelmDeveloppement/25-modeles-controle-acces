@@ -15,6 +15,8 @@ def swap_json(s, marker, obj):
     return s[:i] + json.dumps(obj, ensure_ascii=False, separators=(',', ':')) + s[i + e:]
 PUB = json.load(open(os.path.join(R, 'data', 'pub.json'), encoding='utf8'))
 ENC = json.load(open(os.path.join(R, 'data', 'enc.json')))
+BANK = json.load(open(os.path.join(R, 'data', 'bank.json'), encoding='utf8'))
+TENC = json.load(open(os.path.join(R, 'data', 'bank_enc.json')))
 AVATARS = ['🦊', '🐼', '🦉', '🐙', '🦁', '🐢', '🦄', '🐧', '🐝', '🦅', '🐬', '🦋']
 
 INFO = r'''AC.INFO = {
@@ -41,6 +43,8 @@ AC.avHtml = a => a ? `<span style="font-size:1.25em;line-height:1" aria-hidden="
 def common(s, title, page):
     s = swap_json(s, 'AC.PUB=', PUB)
     if 'AC.ENC=' in s: s = swap_json(s, 'AC.ENC=', ENC)
+    if page in ('joueur', 'enseignant'):   # banque du test final (publique, sans clé) ; clés chiffrées pour le TDC seul
+        s = sub(s, '</script><script>AC.PUB=', '</script><script>AC.BANK=' + json.dumps(BANK, ensure_ascii=False, separators=(',', ':')) + (';AC.TENC=' + json.dumps(TENC) if page == 'enseignant' else '') + ';</script><script>AC.PUB=', what='bank')
     i = s.index('AC.INFO = {'); j = s.index("AC.FOOT = '", i); j = s.index('\n', j)
     s = s[:i] + INFO.rstrip('\n') + s[j:]
     s = re.sub(r'<title>[^<]*</title>', '<title>%s</title>' % title, s, count=1)

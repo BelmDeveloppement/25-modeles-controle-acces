@@ -32,3 +32,10 @@ def patch_classement(s):
     <div style="width:170px;margin:10px auto 0;background:#fff;padding:6px;border-radius:10px">${qrSvg(joinUrl(), 158)}</div><p class="muted" style="font-size:18px;margin:4px 0">▲ secours téléphone (le PC d’abord)</p><p style="font-size:30px"><b>${pub.np}</b> connecté${pub.np > 1 ? 's' : ''}</p></div>`;
 ''' + s[j:]
     return s
+# --- test final (règle 33) : la projection n'affiche qu'un compteur et le classement par pseudos, jamais de noms
+_pc = patch_classement
+def patch_classement(s):
+    s = _pc(s)
+    s = sub(s, "function render() { $('root').innerHTML", "const tfBanner = () => pub && pub.tf && pub.tf.st ? `<div class=\"card\" style=\"font-size:26px;margin-bottom:12px\"><b>Test final ${pub.tf.st === 'open' ? '● en cours' : '■ clos'}</b> · ✓ ${(pub.tf.done || []).length} terminé(s) sur ${pub.tf.np}</div>` : '';\nfunction render() { $('root').innerHTML", what='tf-banner')
+    s = sub(s, "<div>${left()}</div>", "<div>${tfBanner()}${left()}</div>", what='tf-left')
+    return s

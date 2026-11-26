@@ -110,3 +110,11 @@ def patch_joueur(s):
     i = s.index('function lb() {'); j = s.index('function qView() {')
     s = s[:i] + JOUEUR_JS + s[j:]
     return s
+# --- test final (règle 33)
+_pj = patch_joueur
+def patch_joueur(s):
+    s = _pj(s)
+    i = s.index('function lb() {')
+    s = s[:i] + open(os.path.join(R, 'tools', 'test_player.js'), encoding='utf8').read() + '\n' + s[i:]
+    s = sub(s, "  if (sheet) { dirty = true; return; }\n", "  if (sheet) { dirty = true; return; }\n  if (me.n && pub && pub.tf && pub.tf.st && tRender()) return;\n", what='render-test')
+    return s

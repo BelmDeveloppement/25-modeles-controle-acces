@@ -35,8 +35,11 @@ function detBtn(qid) {
   return `<p style="margin:8px 0 0"><button class="btn alt sm" onclick="window.toggleDet('${qid}')">${on ? '▲ Masquer' : '📘 Afficher'} la correction très détaillée (enseignant)</button></p>${on ? `<div class="card" style="background:#0a1a30;margin-top:6px">${L.map(x => `<p style="margin:.35em 0">${AC.esc(x)}</p>`).join('')}</div>` : ''}`;
 }
 window.nouvellePartie = () => {
+  if (G.T && Object.keys(G.T.res).length && !(G.T.exp && G.T.exp >= G.T.last)) {
+    if (!confirm('⚠ Les résultats du test final ne sont PAS exportés (ou ont changé depuis le dernier export). OK = les effacer définitivement. Annuler = revenir pour exporter (onglet Test final).')) { tab = 'test'; scheduleRender(); return; }
+  }
   if (!confirm('NOUVELLE PARTIE : remet tout à zéro (joueurs, points, Questions jouées, écran projeté et écrans des joueurs). Les signalements sont conservés (exportez-les avant si besoin). Continuer ?')) return;
-  G.pl = {}; G.cur = null; G.played = {}; G.qdone = {}; G.ended = false; G.pend = null; G.lastSlide = null; G.gen = now();
+  G.T = null; G.pl = {}; G.cur = null; G.played = {}; G.qdone = {}; G.ended = false; G.pend = null; G.lastSlide = null; G.gen = now();
   ui.note = 'Nouvelle partie : tout est remis à zéro. Les joueurs se réinscrivent automatiquement avec leur pseudo.'; tab = 'pilot'; commit(true);
 };
 const RST = {a:'● à approuver par l’enseignant', ok:'✓ approuvé', ko:'✗ rejeté'};
@@ -143,4 +146,18 @@ def patch_enseignant(s):
     # fonctions nouvelles : remplace corrTab d'origine
     i = s.index('function corrTab() {'); j = s.index('function guideTab() {')
     s = s[:i] + TDC_JS + s[j:]
+    return s
+# --- test final (règle 33)
+_pe = patch_enseignant
+def patch_enseignant(s):
+    s = _pe(s)
+    i = s.index('function guideTab() {')
+    s = s[:i] + open(os.path.join(R, 'tools', 'test_tdc.js'), encoding='utf8').read() + '\n' + s[i:]
+    s = sub(s, "if (relay) relay.pubState(buildPub()); }", "if (relay) relay.pubState(Object.assign(buildPub(), {tf:testPub(), test_final:G.T && G.T.st === 'open' ? 1 : 0})); }", what='publish-tf')
+    s = sub(s, "  else if (o.k === 'R') {   // signalement", "  else if (o.k === 'T' || o.k === 'TP') { testMsg(o); return; }\n  else if (o.k === 'R') {   // signalement", what='onMsg-test')
+    s = sub(s, "G.pl[o.pid] = G.pl[old]; delete G.pl[old]; const c0 = G.cur;", "G.pl[o.pid] = G.pl[old]; delete G.pl[old]; const c0 = G.cur;\n        if (G.T && G.T.res[old]) { G.T.res[o.pid] = G.T.res[old]; delete G.T.res[old]; }", what='rebind-test')
+    s = sub(s, "['sign', 'Signalements (' + (G.reports || []).length + ')'], ['guide', 'Guide']];", "['sign', 'Signalements (' + (G.reports || []).length + ')'], ['test', 'Test final' + (G.T ? (G.T.st === 'open' ? ' ●' : ' ■') : '')], ['guide', 'Guide']];", what='tabs-test')
+    s = sub(s, "tab === 'sign' ? signTab() : guideTab();", "tab === 'sign' ? signTab() : tab === 'test' ? testTab() : guideTab();", what='render-test')
+    s = sub(s, "try { SEC = await unlock(code); }", "try { SEC = await unlock(code); SEC.T = await unlockBlob(AC.TENC, code); }", what='unlock-test')
+    s = sub(s, "  const cm = tag && /^(Q\\d+):c$/.exec(tag);", "  if (tag === 'TEST') { window.testLaunch(); return; }\n  if (tag === 'TEST:c') { window.testClose(); return; }\n  const cm = tag && /^(Q\\d+):c$/.exec(tag);", what='drive-test')
     return s

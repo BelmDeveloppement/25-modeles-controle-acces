@@ -1,0 +1,50 @@
+{
+ "T01": [
+  "Fondamentaux du contrôle d'accès",
+  "NIST SP 800-12 rév. 1 (2017) ; ISO/IEC 27002:2022 §5.15 ; Saltzer et Schroeder, « The Protection of Information in Computer Systems », 1975 ⚠ à vérifier"
+ ],
+ "T02": [
+  "Contrôle d'accès discrétionnaire (DAC)",
+  "TCSEC « Orange Book » DoD 5200.28-STD (1985) ; Lampson, « Protection », 1971 ; Harrison, Ruzzo, Ullman, 1976 ⚠ à vérifier"
+ ],
+ "T03": [
+  "Contrôle d'accès obligatoire et confidentialité (MAC, Bell-LaPadula)",
+  "Bell et LaPadula, « Secure Computer Systems: Mathematical Foundations », MITRE, 1973 ; TCSEC (1985) ; Denning, « A Lattice Model of Secure Information Flow », 1976 ⚠ à vérifier"
+ ],
+ "T04": [
+  "Intégrité et conflits d'intérêts (Biba, Clark-Wilson, Muraille de Chine)",
+  "Biba, « Integrity Considerations for Secure Computer Systems », MITRE, 1977 ; Clark et Wilson, « A Comparison of Commercial and Military Computer Security Policies », IEEE, 1987 ; Brewer et Nash, « The Chinese Wall Security Policy », 1989 ⚠ à vérifier"
+ ],
+ "T05": [
+  "Contrôle d'accès par rôles (RBAC)",
+  "Ferraiolo et Kuhn, « Role-Based Access Controls », NIST, 1992 ; Sandhu et al., « Role-Based Access Control Models », IEEE Computer, 1996 ; ANSI/INCITS 359-2004 ⚠ à vérifier"
+ ],
+ "T06": [
+  "Contrôle d'accès par attributs et politiques (ABAC, PBAC, XACML)",
+  "NIST SP 800-162, « Guide to Attribute Based Access Control (ABAC) Definition and Considerations », 2014 ; OASIS XACML 3.0 (2013) ; NIST SP 800-178 (2016) ⚠ à vérifier"
+ ],
+ "T07": [
+  "Politiques organisationnelles (OrBAC)",
+  "Abou El Kalam et al., « Organization Based Access Control », IEEE POLICY, 2003 ; Cuppens et Miège, « Modelling contexts in the Or-BAC model », ACSAC, 2003 ⚠ à vérifier"
+ ],
+ "T08": [
+  "Relations, graphes et modèles étendus (ReBAC, Zanzibar)",
+  "Pang et al., « Zanzibar: Google's Consistent, Global Authorization System », USENIX ATC, 2019 ; Fong, « Relationship-Based Access Control », CODASPY, 2011 ⚠ à vérifier"
+ ],
+ "T09": [
+  "Mise en œuvre technique (annuaires, systèmes, réseaux, cloud)",
+  "Microsoft Learn, documentation Active Directory et NTFS ; RFC 4120 (Kerberos V5) ; RFC 4511 (LDAP) ; IEEE 802.1X-2020 ; man sudoers(5) ⚠ à vérifier"
+ ],
+ "T10": [
+  "Identités, authentification forte et comptes à privilèges",
+  "NIST SP 800-63B (2017, rév. 3) ; FIDO Alliance, FIDO2/WebAuthn (W3C, 2019) ; RFC 6238 (TOTP) ; OASIS SAML 2.0 ; OpenID Connect Core 1.0 ; RFC 6749 (OAuth 2.0) ; RFC 7644 (SCIM) ⚠ à vérifier"
+ ],
+ "T11": [
+  "Conformité, audit et gouvernance des accès",
+  "ISO/IEC 27001:2022 (annexe A 5.15, 5.16, 5.18, 8.2, 8.3, 8.15) ; Directive (UE) 2022/2555 NIS 2, art. 21 ; RGPD (UE) 2016/679, art. 5, 25, 32 ; ANSSI, Guide d'hygiène informatique ⚠ à vérifier"
+ ],
+ "T12": [
+  "Cas pratiques et choix de modèle",
+  "Production de l'auteur (cas fictifs) ; références des thèmes T01 à T11 ⚠ exemples inventés"
+ ]
+}

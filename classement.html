@@ -2624,6 +2624,7 @@ function left() {
   else h += `<p style="font-size:20px;margin:8px 0 0">${AC.esc(pub.rev.exp)}</p>`;
   return h + '</div>';
 }
-function render() { $('root').innerHTML = `<div class="wrap" style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px;padding:20px 26px"><div>${left()}</div><div>${board()}${pub && pub.test ? '<span class="pill test">MODE TEST</span>' : ''}</div></div><div class="foot">${AC.FOOT}</div>`; }
+const tfBanner = () => pub && pub.tf && pub.tf.st ? `<div class="card" style="font-size:26px;margin-bottom:12px"><b>Test final ${pub.tf.st === 'open' ? '● en cours' : '■ clos'}</b> · ✓ ${(pub.tf.done || []).length} terminé(s) sur ${pub.tf.np}</div>` : '';
+function render() { $('root').innerHTML = `<div class="wrap" style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px;padding:20px 26px"><div>${tfBanner()}${left()}</div><div>${board()}${pub && pub.test ? '<span class="pill test">MODE TEST</span>' : ''}</div></div><div class="foot">${AC.FOOT}</div>`; }
 render();
 </script></body></html>
