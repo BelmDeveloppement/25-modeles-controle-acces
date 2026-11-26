@@ -1,0 +1,2560 @@
+{
+ "pages": 211,
+ "q": [
+  {
+   "n": 1,
+   "qid": "Q01",
+   "page": 6,
+   "correct": "D",
+   "enonce": "Sur le partage de fichiers de votre entreprise (ou d’une entreprise que vous connaissez), qui décide aujourd’hui des droits d’accès ?",
+   "opts": [
+    "Une règle imposée par le système, quel que soit le propriétaire",
+    "Le rôle de la personne dans l’annuaire",
+    "Personne ne sait vraiment",
+    "Le propriétaire de chaque dossier"
+   ],
+   "expl": [
+    "C’est le contrôle obligatoire (partie 5). Très rare en entreprise civile.",
+    "C’est le contrôle par rôles (partie 4), courant dès que l’entreprise grandit.",
+    "Réponse honnête et fréquente : c’est justement ce que l’audit des droits révèle.",
+    "Réponse la plus fréquente en pratique : c’est le contrôle discrétionnaire, que nous verrons en partie 3. Ce sondage n’a pas de bonne réponse."
+   ],
+   "part": "INTRODUCTION",
+   "retenir": "",
+   "but": "Faire émerger vos pratiques avant d’en nommer les modèles. Aucun point.",
+   "sondage": true,
+   "source": "production de l’auteur",
+   "cyber": ""
+  },
+  {
+   "n": 2,
+   "qid": "Q02",
+   "page": 13,
+   "correct": "C",
+   "enonce": "Hugo, conducteur habilité Interne, veut lire le tableau des marges classé Confidentiel. Que décide Bell-LaPadula ?",
+   "opts": [
+    "Permis : Hugo est un salarié de l’entreprise",
+    "Refusé : NWD, écriture vers le bas",
+    "Refusé : NRU, lecture vers le haut",
+    "Permis si le propriétaire du tableau l’autorise"
+   ],
+   "expl": [
+    "Faux : être salarié ne suffit pas. BLP compare les niveaux, pas le statut.",
+    "Faux : Hugo ne veut pas écrire, il veut lire. NWD ne concerne que l’écriture.",
+    "Hugo est Interne (niveau 1), le tableau est Confidentiel (niveau 2). Lire exige niveau du sujet ≥ niveau de l’objet : 1 ≥ 2 est faux. C’est le cas typique de NRU.",
+    "Faux : la propriété discrétionnaire s’ajoute aux niveaux, elle ne les remplace pas. Les deux conditions doivent être vraies."
+   ],
+   "part": "PARTIE 1 · CONFIDENTIALITÉ",
+   "retenir": "Lecture permise seulement si niveau du sujet ≥ niveau de l’objet.",
+   "but": "Appliquer NRU à un cas simple.",
+   "sondage": false,
+   "source": "D. E. Bell & L. J. LaPadula, « Secure Computer System: Unified Exposition and Multics Interpretation », MITRE MTR-2997 rév. 1 (ESD-TR-75-306), mars 1976 ; D. E. Bell, « Looking Back at the Bell-La Padula Model », ACSAC 2005",
+   "cyber": ""
+  },
+  {
+   "n": 3,
+   "qid": "Q03",
+   "page": 16,
+   "correct": "A",
+   "enonce": "Inès, habilitée Secret, veut copier un extrait du plan stratégique dans le dossier « Offres d’emploi » (Public). Que décide BLP ?",
+   "opts": [
+    "Refusé : NWD, écriture vers le bas",
+    "Permis : Inès a le niveau le plus élevé",
+    "Refusé : NRU, lecture vers le haut",
+    "Permis si elle retire les noms propres"
+   ],
+   "expl": [
+    "Inès est Secret (3), le dossier est Public (0). Écrire exige niveau de l’objet ≥ niveau du sujet : 0 ≥ 3 est faux. NWD bloque la fuite du secret vers un lieu public.",
+    "Faux : c’est justement parce qu’elle a un niveau élevé que la copie vers le bas est dangereuse.",
+    "Faux : Inès lit à son niveau ou plus bas. NRU n’est pas en cause.",
+    "Faux : BLP ne regarde pas le contenu. Déclassifier demande un sujet de confiance et une procédure."
+   ],
+   "part": "PARTIE 1 · CONFIDENTIALITÉ",
+   "retenir": "Écriture permise seulement si niveau de l’objet ≥ niveau du sujet.",
+   "but": "Reconnaître la fuite que NWD empêche.",
+   "sondage": false,
+   "source": "D. E. Bell & L. J. LaPadula, « Secure Computer System: Unified Exposition and Multics Interpretation », MITRE MTR-2997 rév. 1 (ESD-TR-75-306), mars 1976 ; D. E. Bell, « Looking Back at the Bell-La Padula Model », ACSAC 2005",
+   "cyber": ""
+  },
+  {
+   "n": 4,
+   "qid": "Q04",
+   "page": 23,
+   "correct": "B",
+   "enonce": "Une PME de transport (120 salariés, aucune donnée classifiée de défense) hésite à déployer un système MLS fondé sur BLP. Quel avis est le plus réaliste ?",
+   "opts": [
+    "Indispensable : BLP est la seule méthode prouvée pour protéger des données confidentielles",
+    "Surdimensionné : on retient l’étiquetage et le cloisonnement, BLP restant une référence",
+    "Obligatoire : la directive NIS2 impose un modèle MLS aux transporteurs",
+    "Inutile : plus aucun système réel n’utilise BLP depuis les années 1990"
+   ],
+   "expl": [
+    "Faux : BLP est prouvé pour la confidentialité, mais il ne protège pas l’intégrité et reste lourd. D’autres modèles et contrôles couvrent les besoins d’une PME.",
+    "Le MLS est lourd et conçu pour des environnements classifiés ; la PME gagne plus avec des étiquettes, des rôles et un contrôle des sorties de données.",
+    "Faux : NIS2 exige une maîtrise démontrable des accès, elle ne choisit aucun modèle.",
+    "Faux : des systèmes certifiés (SELinux MLS, Solaris Trusted Extensions) reprennent ses règles, surtout dans la défense."
+   ],
+   "part": "PARTIE 1 · CONFIDENTIALITÉ",
+   "retenir": "BLP : une référence solide, un déploiement rare en entreprise civile.",
+   "but": "Situer BLP honnêtement : réel, mais de niche.",
+   "sondage": false,
+   "source": "Red Hat, « Using SELinux », RHEL 10, section Multi-Level Security (MLS) ⚠ (lien exact à vérifier) ; production de l’auteur",
+   "cyber": "Choisir un mécanisme proportionné au risque évite deux fautes : n’en mettre aucun, ou en imposer un impossible à administrer, que l’on finit par contourner."
+  },
+  {
+   "n": 5,
+   "qid": "Q05",
+   "page": 25,
+   "correct": "A",
+   "enonce": "Omar, habilité Interne, ajoute une ligne dans le journal des incidents classé Confidentiel. Que dit BLP, et que faut-il en penser ?",
+   "opts": [
+    "Permis par BLP, mais cela pose un problème d’intégrité",
+    "Refusé par BLP : un Interne ne touche pas au Confidentiel",
+    "Permis, et cela ne pose aucun problème",
+    "Refusé par NWD, écriture vers le bas"
+   ],
+   "expl": [
+    "Écrire exige niveau de l’objet ≥ niveau du sujet : 2 ≥ 1 est vrai. BLP autorise. Mais un sujet de bas niveau peut ainsi dégrader un journal de haut niveau : BLP ne protège pas l’intégrité.",
+    "Faux : BLP interdit la lecture vers le haut, pas l’écriture vers le haut.",
+    "Faux : autoriser n’importe quel employé à écrire dans un journal sensible est un risque d’intégrité.",
+    "Faux : le journal est au-dessus d’Omar, pas en dessous. Ce n’est pas une écriture vers le bas."
+   ],
+   "part": "PARTIE 1 · CONFIDENTIALITÉ",
+   "retenir": "BLP laisse écrire vers le haut : il faut un modèle d’intégrité en complément.",
+   "but": "Repérer la limite de BLP : l’intégrité.",
+   "sondage": false,
+   "source": "D. E. Bell & L. J. LaPadula, « Secure Computer System: Unified Exposition and Multics Interpretation », MITRE MTR-2997 rév. 1 (ESD-TR-75-306), mars 1976 ; D. E. Bell, « Looking Back at the Bell-La Padula Model », ACSAC 2005",
+   "cyber": ""
+  },
+  {
+   "n": 6,
+   "qid": "Q06",
+   "page": 27,
+   "correct": "D",
+   "enonce": "En pleine session, Inès (Confidentiel) demande au système de passer son propre niveau à Secret pour ouvrir un document. Quelle propriété de BLP s’y oppose ?",
+   "opts": [
+    "La propriété étoile : un sujet ne peut pas écrire vers un niveau inférieur à son niveau actuel",
+    "La propriété de sécurité simple : pas de lecture vers un niveau supérieur au sien",
+    "La séparation des tâches : une même personne ne peut pas à la fois demander et approuver",
+    "La tranquillité : les niveaux des sujets et des objets sont fixés et ne changent pas en cours de session"
+   ],
+   "expl": [
+    "Elle encadre les écritures. Ici, Inès ne veut pas écrire : elle cherche à modifier son niveau.",
+    "C’est en effet pour lire qu’Inès voudrait monter, mais cette propriété compare les niveaux ; elle n’interdit pas, en elle-même, le changement de niveau en cours de session.",
+    "Notion de Clark-Wilson et de RBAC ; elle ne fait pas partie de BLP et ne règle pas un changement de niveau.",
+    "La tranquillité fige les niveaux des sujets et des objets pendant le fonctionnement : un sujet ne peut pas monter son propre niveau pour contourner les règles."
+   ],
+   "part": "PARTIE 1 · CONFIDENTIALITÉ",
+   "retenir": "Tranquillité : un niveau attribué reste fixe.",
+   "but": "Distinguer la tranquillité des deux interdits.",
+   "sondage": false,
+   "source": "D. E. Bell & L. J. LaPadula, « Secure Computer System: Unified Exposition and Multics Interpretation », MITRE MTR-2997 rév. 1 (ESD-TR-75-306), mars 1976 ; D. E. Bell, « Looking Back at the Bell-La Padula Model », ACSAC 2005",
+   "cyber": ""
+  },
+  {
+   "n": 7,
+   "qid": "Q07",
+   "page": 29,
+   "multi": true,
+   "nrep": 6,
+   "situation": "Niveaux : Public (0) < Interne (1) < Confidentiel (2) < Secret (3). Léa (conductrice) : Interne. Marc (gestionnaire) : Confidentiel. La directrice : Secret. Objets : plaquette (Public), planning des tournées (Interne), contrats clients (Confidentiel), plan stratégique (Secret).",
+   "consigne": "Pour chacune des 6 demandes, répondez PERMIS ou REFUSÉ et citez la règle (NRU, NWD ou aucune) : 1 point par demande correcte.",
+   "exemple": "La directrice (Secret) lit le planning (Interne) → PERMIS : lecture vers le bas, 3 ≥ 1.",
+   "items": [
+    "Léa lit le planning des tournées.",
+    "Léa lit les contrats clients.",
+    "Marc lit le planning des tournées.",
+    "Marc écrit dans le planning des tournées.",
+    "Léa écrit un compte rendu dans le plan stratégique.",
+    "La directrice écrit dans la plaquette commerciale."
+   ],
+   "rows": [
+    [
+     "1. Léa lit le planning (Interne)",
+     "Léa : Interne (1) ; planning : Interne (1). Lecture : 1 ≥ 1, vrai. PERMIS."
+    ],
+    [
+     "2. Léa lit les contrats (Confidentiel)",
+     "Contrats : niveau 2. Lecture : 1 ≥ 2, faux. REFUSÉ, règle NRU (lecture vers le haut)."
+    ],
+    [
+     "3. Marc lit le planning",
+     "Marc : Confidentiel (2) ; planning : 1. Lecture : 2 ≥ 1, vrai. PERMIS (lecture vers le bas)."
+    ],
+    [
+     "4. Marc écrit dans le planning",
+     "Écriture : niveau objet (1) ≥ niveau sujet (2) ? Faux. REFUSÉ, règle NWD : Marc pourrait y recopier du Confidentiel."
+    ],
+    [
+     "5. Léa écrit dans le plan stratégique",
+     "Léa : 1 ; plan : 3. Écriture : 3 ≥ 1, vrai. PERMIS (écriture vers le haut). Surprenant, mais c’est une limite de BLP : l’intégrité n’est pas protégée."
+    ],
+    [
+     "6. La directrice écrit dans la plaquette",
+     "Directrice : 3 ; plaquette : 0. Écriture : 0 ≥ 3, faux. REFUSÉ, NWD : elle pourrait publier du Secret par erreur."
+    ]
+   ],
+   "table": null,
+   "part": "PARTIE 1 · CONFIDENTIALITÉ",
+   "retenir": "Permis : 1, 3, 5. Refusés : 2 (NRU), 4 et 6 (NWD). Méthode : placer sujet et objet sur l’échelle, appliquer la règle, citer la règle.",
+   "but": "Appliquer NRU et NWD sans erreur, en citant à chaque fois la règle.",
+   "source": "D. E. Bell & L. J. LaPadula, « Secure Computer System: Unified Exposition and Multics Interpretation », MITRE MTR-2997 rév. 1 (ESD-TR-75-306), mars 1976 ; D. E. Bell, « Looking Back at the Bell-La Padula Model », ACSAC 2005",
+   "cyber": ""
+  },
+  {
+   "n": 8,
+   "qid": "Q08",
+   "page": 36,
+   "correct": "C",
+   "enonce": "Le logiciel de paie (intégrité haute) veut importer un fichier de pointage reçu d’un téléphone personnel (intégrité basse). Que décide Biba ?",
+   "opts": [
+    "Permis : la paie a le niveau le plus haut",
+    "Refusé : no write up",
+    "Refusé : no read down",
+    "Permis si le fichier est classé Confidentiel"
+   ],
+   "expl": [
+    "Faux : c’est l’inverse. Plus le sujet est fiable, plus il doit se protéger de ce qui l’est moins.",
+    "Faux : il s’agit d’une lecture (import), pas d’une écriture dans un objet supérieur.",
+    "Lire un objet d’intégrité inférieure est interdit : la donnée douteuse pourrait contaminer la paie. Il faut un contrôle (validation, TP) avant import.",
+    "Faux : la confidentialité est l’affaire de BLP. Biba parle de fiabilité."
+   ],
+   "part": "PARTIE 2 · INTÉGRITÉ",
+   "retenir": "Lecture permise seulement si l’intégrité de l’objet ≥ celle du sujet.",
+   "but": "Appliquer no read down.",
+   "sondage": false,
+   "source": "K. J. Biba, « Integrity Considerations for Secure Computer Systems », MITRE MTR-3153 / ESD-TR-76-372, avril 1977 ; D. D. Clark & D. R. Wilson, « A Comparison of Commercial and Military Computer Security Policies », IEEE Symposium on Security and Privacy, 1987, p. 184-194",
+   "cyber": ""
+  },
+  {
+   "n": 9,
+   "qid": "Q09",
+   "page": 39,
+   "correct": "B",
+   "enonce": "Un stagiaire (intégrité basse) veut corriger lui-même une ligne du grand livre (intégrité haute). Que décide Biba ?",
+   "opts": [
+    "Permis : corriger une erreur améliore l’intégrité",
+    "Refusé : no write up",
+    "Refusé : no read down",
+    "Permis avec la validation de son tuteur"
+   ],
+   "expl": [
+    "Faux : l’intention ne compte pas. Un sujet peu fiable peut aussi se tromper.",
+    "Écrire dans un objet d’intégrité supérieure est interdit : un sujet peu fiable ne doit pas modifier une donnée de référence.",
+    "Faux : il s’agit d’une écriture, pas d’une lecture.",
+    "Faux dans Biba pur ; dans l’entreprise on passerait par une procédure certifiée (Clark-Wilson)."
+   ],
+   "part": "PARTIE 2 · INTÉGRITÉ",
+   "retenir": "Écriture permise seulement si l’intégrité de l’objet ≤ celle du sujet.",
+   "but": "Appliquer no write up.",
+   "sondage": false,
+   "source": "K. J. Biba, « Integrity Considerations for Secure Computer Systems », MITRE MTR-3153 / ESD-TR-76-372, avril 1977 ; D. D. Clark & D. R. Wilson, « A Comparison of Commercial and Military Computer Security Policies », IEEE Symposium on Security and Privacy, 1987, p. 184-194",
+   "cyber": ""
+  },
+  {
+   "n": 10,
+   "qid": "Q10",
+   "page": 46,
+   "correct": "D",
+   "enonce": "Dans Clark-Wilson, quel élément vérifie que les données contraintes restent cohérentes (par exemple, que la somme des factures égale le total comptable) ?",
+   "opts": [
+    "Le TP, procédure de transformation qui modifie les CDI de façon bien formée",
+    "L’UDI, donnée non contrainte que le système reçoit de l’extérieur et doit valider",
+    "Le journal d’audit, qui garde la trace de chaque transformation exécutée",
+    "L’IVP, la procédure de vérification d’intégrité qui contrôle la cohérence des CDI après coup"
+   ],
+   "expl": [
+    "Le TP modifie les CDI en conservant leur validité ; il ne les contrôle pas après coup de façon indépendante.",
+    "Un UDI est une donnée brute à valider avant de devenir CDI ; ce n’est pas un mécanisme de contrôle.",
+    "Il sert à tracer (règle C4), pas à vérifier la cohérence des CDI : il constate, il ne recalcule pas.",
+    "L’IVP contrôle la cohérence des CDI, par exemple en recalculant des totaux : c’est le « contrôleur » du modèle."
+   ],
+   "part": "PARTIE 2 · INTÉGRITÉ",
+   "retenir": "TP modifie, IVP vérifie.",
+   "but": "Distinguer TP et IVP.",
+   "sondage": false,
+   "source": "K. J. Biba, « Integrity Considerations for Secure Computer Systems », MITRE MTR-3153 / ESD-TR-76-372, avril 1977 ; D. D. Clark & D. R. Wilson, « A Comparison of Commercial and Military Computer Security Policies », IEEE Symposium on Security and Privacy, 1987, p. 184-194",
+   "cyber": ""
+  },
+  {
+   "n": 11,
+   "qid": "Q11",
+   "page": 48,
+   "correct": "A",
+   "enonce": "Pourquoi Clark-Wilson autorise-t-il un triplet (utilisateur, TP, CDI) plutôt qu’un simple droit « écrire » sur un fichier ?",
+   "opts": [
+    "Parce que l’utilisateur ne peut modifier la donnée qu’à travers une procédure certifiée, jamais en écrivant directement dans le fichier",
+    "Pour pouvoir attribuer le droit d’écriture à chaque donnée séparément, comme le fait un propriétaire en DAC",
+    "Pour classer les données selon leur niveau de confidentialité avant toute modification",
+    "Parce que cela accélère les accès aux données en évitant les contrôles répétés"
+   ],
+   "expl": [
+    "Le droit porte sur le couple (TP, CDI) : l’utilisateur n’a jamais de droit d’écriture direct sur la donnée.",
+    "Faux : c’est le contraire. Le triplet retire à l’utilisateur le droit d’écrire directement, il impose le passage par la procédure.",
+    "Faux : la confidentialité n’est pas l’objet de Clark-Wilson, qui protège l’intégrité.",
+    "Faux : le modèle ajoute des contrôles ; il ne cherche pas la performance."
+   ],
+   "part": "PARTIE 2 · INTÉGRITÉ",
+   "retenir": "Le triplet impose le « comment » de la modification, pas seulement le « qui ».",
+   "but": "Comprendre pourquoi on passe par des TP.",
+   "sondage": false,
+   "source": "K. J. Biba, « Integrity Considerations for Secure Computer Systems », MITRE MTR-3153 / ESD-TR-76-372, avril 1977 ; D. D. Clark & D. R. Wilson, « A Comparison of Commercial and Military Computer Security Policies », IEEE Symposium on Security and Privacy, 1987, p. 184-194",
+   "cyber": ""
+  },
+  {
+   "n": 12,
+   "qid": "Q12",
+   "page": 51,
+   "multi": true,
+   "nrep": 6,
+   "situation": "Niveaux d’intégrité : Haute (grand livre comptable validé), Moyenne (saisies des gestionnaires), Basse (relevés des tablettes, fichiers téléchargés). Sonia : Haute. Marc : Moyenne. Un conducteur : Basse.",
+   "consigne": "Pour chacune des 6 demandes, répondez PERMIS ou REFUSÉ et citez la règle (no read down ou no write up) : 1 point par demande correcte.",
+   "exemple": "Sonia (Haute) écrit dans une saisie de gestionnaire (Moyenne) → PERMIS : écriture vers le bas.",
+   "items": [
+    "Sonia lit les relevés des tablettes.",
+    "Marc écrit dans le grand livre.",
+    "Sonia lit le grand livre.",
+    "Un conducteur lit le grand livre.",
+    "Marc lit un fichier téléchargé sur le Web.",
+    "Un conducteur écrit dans les saisies des gestionnaires."
+   ],
+   "rows": [
+    [
+     "1. Sonia (Haute) lit les relevés (Basse)",
+     "Lecture : intégrité de l’objet (Basse) ≥ celle du sujet (Haute) ? Faux. REFUSÉ, no read down."
+    ],
+    [
+     "2. Marc (Moyenne) écrit dans le grand livre (Haute)",
+     "Écriture : intégrité de l’objet (Haute) ≤ celle du sujet (Moyenne) ? Faux. REFUSÉ, no write up."
+    ],
+    [
+     "3. Sonia lit le grand livre",
+     "Haute ≥ Haute : vrai. PERMIS."
+    ],
+    [
+     "4. Un conducteur (Basse) lit le grand livre (Haute)",
+     "Haute ≥ Basse : vrai. PERMIS (lecture vers le haut : il lit du fiable)."
+    ],
+    [
+     "5. Marc lit un fichier du Web (Basse)",
+     "Basse ≥ Moyenne ? Faux. REFUSÉ, no read down : le fichier pourrait polluer les saisies."
+    ],
+    [
+     "6. Un conducteur écrit dans les saisies (Moyenne)",
+     "Écriture : Moyenne ≤ Basse ? Faux. REFUSÉ, no write up."
+    ]
+   ],
+   "table": null,
+   "part": "PARTIE 2 · INTÉGRITÉ",
+   "retenir": "Refusés : 1, 2, 5, 6. Permis : 3 et 4. Mémo : Biba « lit vers le haut, écrit vers le bas », l’exact inverse de BLP.",
+   "but": "Appliquer no read down et no write up, et constater que Biba est l’inverse de BLP.",
+   "source": "K. J. Biba, « Integrity Considerations for Secure Computer Systems », MITRE MTR-3153 / ESD-TR-76-372, avril 1977",
+   "cyber": ""
+  },
+  {
+   "n": 13,
+   "qid": "Q13",
+   "page": 53,
+   "multi": true,
+   "nrep": 4,
+   "situation": "Le TMS de TransLor contient la table « Factures » (CDI). Les saisies brutes des tablettes sont des UDI. Procédures certifiées : TP1 « enregistrer une livraison », TP2 « émettre une facture », TP3 « corriger un tarif ». IVP : « total des factures = total comptable ». Droits : Léa peut lancer TP1 ; Sonia TP2 ; Marc TP1 et TP3.",
+   "consigne": "Répondez aux 4 demandes ci-dessous : triplets, puis AUTORISÉ ou REFUSÉ avec la raison, puis rôle de l’IVP. 1 point par réponse exacte.",
+   "exemple": "(Léa, TP1, Livraisons) : Léa peut lancer TP1 sur la table Livraisons.",
+   "items": [
+    "Quels sont les quatre triplets (utilisateur, TP, CDI) autorisés par les droits décrits ?",
+    "Léa tente de modifier directement la table Factures avec un outil de base de données : autorisé ou refusé ?",
+    "Marc lance TP2 « émettre une facture » : autorisé ou refusé ?",
+    "À quoi sert l’IVP en fin de journée ? Donnez un exemple d’alerte."
+   ],
+   "rows": [
+    [
+     "1. Les triplets",
+     "(Léa, TP1, Livraisons) ; (Sonia, TP2, Factures) ; (Marc, TP1, Livraisons) ; (Marc, TP3, Tarifs). Chaque triplet associe un utilisateur, un programme certifié et une donnée précise."
+    ],
+    [
+     "2. Léa modifie directement Factures",
+     "REFUSÉ : aucun triplet ne l’autorise, et une modification directe contourne les TP. Dans Clark-Wilson, un CDI ne se modifie que par TP."
+    ],
+    [
+     "3. Marc lance TP2",
+     "REFUSÉ : (Marc, TP2, Factures) n’est pas dans la liste. Marc émet des tarifs, pas des factures : séparation des tâches implicite."
+    ],
+    [
+     "4. L’IVP",
+     "Il recalcule en fin de journée le total des factures et le compare au total comptable. Alerte si l’écart n’est pas nul : par exemple 1 facture de 4 200 € absente du total comptable."
+    ]
+   ],
+   "table": null,
+   "part": "PARTIE 2 · INTÉGRITÉ",
+   "retenir": "Un droit = (utilisateur, procédure certifiée, donnée). Le contrôle IVP détecte ce que les TP n’ont pas empêché.",
+   "but": "Comprendre qu’on autorise un couple (programme, donnée), pas un droit libre d’écriture.",
+   "source": "D. D. Clark & D. R. Wilson, « A Comparison of Commercial and Military Computer Security Policies », IEEE Symposium on Security and Privacy, 1987, p. 184-194 ; exemple fictif (TransLor)",
+   "cyber": "Le triplet (utilisateur, TP, CDI) borne ce qu’un compte volé peut faire : l’attaquant ne peut lancer que les TP de sa victime. Faute évitée : donner un droit d’écriture libre sur une table."
+  },
+  {
+   "n": 14,
+   "qid": "Q14",
+   "page": 59,
+   "correct": "B",
+   "enonce": "Dans un modèle DAC, qui décide des droits d’accès à un dossier ?",
+   "opts": [
+    "Une autorité de sécurité centrale, quel que soit le propriétaire",
+    "Son propriétaire",
+    "Le rôle de la personne dans l’annuaire",
+    "L’heure et l’appareil de la personne"
+   ],
+   "expl": [
+    "Faux : c’est le MAC, où la politique est imposée par le système.",
+    "C’est la définition du DAC : le propriétaire décide discrétionnairement, souvent via l’ACL de l’objet.",
+    "Faux : c’est le RBAC, où les droits sont attachés aux fonctions.",
+    "Faux : c’est l’ABAC, où la décision dépend des attributs et du contexte."
+   ],
+   "part": "PARTIE 3 · ADMINISTRATION DES DROITS",
+   "retenir": "DAC : le propriétaire décide.",
+   "but": "Reconnaître la définition du DAC.",
+   "sondage": false,
+   "source": "B. W. Lampson, « Protection », Princeton Conference on Information Sciences and Systems, 1971 ⚠ (références exactes à vérifier) ; U.S. DoD, « Trusted Computer System Evaluation Criteria » (Orange Book), CSC-STD-001-83, août 1983 ; DoD 5200.28-STD, décembre 1985",
+   "cyber": ""
+  },
+  {
+   "n": 15,
+   "qid": "Q15",
+   "page": 61,
+   "correct": "C",
+   "enonce": "Dans une autre PME, 10 responsables ont chacun créé 5 dossiers et ajouté en moyenne 2 personnes à chacun, sans validation. Combien d’autorisations n’ont jamais été validées ?",
+   "opts": [
+    "50 autorisations",
+    "17 autorisations",
+    "100 autorisations",
+    "20 autorisations"
+   ],
+   "expl": [
+    "Erreur : le facteur 2 (personnes ajoutées par dossier) est oublié. 10 × 5 = 50 dossiers, pas 50 autorisations.",
+    "Erreur : les nombres sont additionnés (10 + 5 + 2) au lieu d’être multipliés.",
+    "10 responsables × 5 dossiers × 2 personnes = 100. Chacune a été créée sans contrôle : c’est la surface à auditer.",
+    "Erreur : 10 × 2 = 20 oublie le nombre de dossiers par responsable."
+   ],
+   "part": "PARTIE 3 · ADMINISTRATION DES DROITS",
+   "retenir": "Le nombre d’autorisations non validées croît par multiplication.",
+   "but": "Chiffrer l’ampleur d’une dérive de droits.",
+   "sondage": false,
+   "source": "B. W. Lampson, « Protection », Princeton Conference on Information Sciences and Systems, 1971 ⚠ (références exactes à vérifier) ; U.S. DoD, « Trusted Computer System Evaluation Criteria » (Orange Book), CSC-STD-001-83, août 1983 ; DoD 5200.28-STD, décembre 1985",
+   "cyber": ""
+  },
+  {
+   "n": 16,
+   "qid": "Q16",
+   "page": 64,
+   "multi": true,
+   "nrep": 4,
+   "situation": "Le partage « Exploitation » de TransLor contient le planning des tournées et les procédures. Chacun des 15 gestionnaires peut modifier librement les ACL des dossiers qu’il crée. En moyenne, un gestionnaire a créé 8 dossiers et y a ajouté 3 personnes.",
+   "consigne": "Pour chacune des 4 demandes ci-dessous, donnez votre réponse : 1 point par réponse exacte.",
+   "exemple": "",
+   "items": [
+    "Quel est le risque principal quand chaque gestionnaire modifie librement les ACL ? A) le serveur sature · B) les droits s’accumulent sans que personne ne les valide · C) les noms de fichiers deviennent trop longs · D) les sauvegardes échouent",
+    "Quel contrôle est applicable dès demain par deux informaticiens ? A) interdire tout partage · B) racheter un serveur · C) journaliser les changements d’ACL et alerter à l’ajout d’un compte externe · D) former chacun pendant un an",
+    "Combien d’autorisations ont été créées sans aucune validation ? A) 120 · B) 360 · C) 26 · D) 45",
+    "Quel contrôle mettez-vous en place en premier ? A) la revue trimestrielle seule · B) le ticket obligatoire seul · C) le journal et l’alerte, car rapides et sans gêne · D) la suppression des ACL"
+   ],
+   "rows": [
+    [
+     "1. Risque principal : B",
+     "Les droits s’accumulent sans validation : c’est la dérive des privilèges (propagation, faible traçabilité, erreur humaine, fuite par copie). A, C et D sont des problèmes techniques sans rapport avec les droits."
+    ],
+    [
+     "2. Contrôle applicable : C",
+     "Le journal et l’alerte se mettent en place en quelques heures. A bloque l’activité (piège « tout interdire »), B et D ne sont pas applicables avec deux personnes."
+    ],
+    [
+     "3. Le calcul : B (360)",
+     "15 gestionnaires × 8 dossiers = 120 dossiers ; 120 × 3 personnes = 360 autorisations. A (120) oublie le facteur 3 ; C (26) additionne 15 + 8 + 3 au lieu de multiplier ; D (45) = 15 × 3 oublie le nombre de dossiers."
+    ],
+    [
+     "4. La priorité : C",
+     "Le journal et l’alerte d’abord : rapides, sans gêne pour les utilisateurs, et ils révèlent l’ampleur réelle avant d’imposer le ticket (B) ou la revue (A). D détruit le modèle sans le remplacer."
+    ]
+   ],
+   "table": null,
+   "part": "PARTIE 3 · ADMINISTRATION DES DROITS",
+   "retenir": "Chiffre clé : 360 autorisations non validées. Le DAC reste acceptable si les délégations sont encadrées, revues et journalisées.",
+   "but": "Mesurer la dérive des droits et choisir un premier contrôle réaliste.",
+   "source": "B. W. Lampson, « Protection », Princeton Conference on Information Sciences and Systems, 1971 ⚠ (références exactes à vérifier) ; U.S. DoD, « Trusted Computer System Evaluation Criteria » (Orange Book), CSC-STD-001-83, août 1983 ; DoD 5200.28-STD, décembre 1985",
+   "cyber": "Une ACL que personne ne revoit est un droit que l’attaquant hérite d’un compte compromis : on évite la faute « partager sans trace »."
+  },
+  {
+   "n": 17,
+   "qid": "Q17",
+   "page": 66,
+   "correct": "D",
+   "enonce": "Dans une entreprise soumise à des obligations réglementaires, que recommande-t-on pour renforcer un partage de fichiers en DAC ?",
+   "opts": [
+    "Remplacer les ACL par un partage unique ouvert à tous les salariés, pour simplifier l’audit",
+    "Autoriser chaque propriétaire à transférer librement ses droits, pour garder la souplesse du DAC",
+    "Réduire la durée de conservation des journaux pour alléger la charge du serveur",
+    "Ajouter des rôles ou un contrôle obligatoire, avec des revues d’accès régulières"
+   ],
+   "expl": [
+    "Aggrave le risque : une base unique ouverte supprime toute séparation entre données sensibles et courantes.",
+    "C’est le DAC pur : le plus risqué, car la délégation échappe à tout contrôle.",
+    "On perd la traçabilité nécessaire à l’audit : la conservation est souvent une obligation.",
+    "On cumule gouvernance (modèle plus strict sur les données critiques) et détection (revue). C’est la pratique recommandée."
+   ],
+   "part": "PARTIE 3 · ADMINISTRATION DES DROITS",
+   "retenir": "DAC + revue + modèle plus strict pour le critique.",
+   "but": "Choisir un renforcement réaliste.",
+   "sondage": false,
+   "source": "B. W. Lampson, « Protection », Princeton Conference on Information Sciences and Systems, 1971 ⚠ (références exactes à vérifier) ; U.S. DoD, « Trusted Computer System Evaluation Criteria » (Orange Book), CSC-STD-001-83, août 1983 ; DoD 5200.28-STD, décembre 1985",
+   "cyber": ""
+  },
+  {
+   "n": 18,
+   "qid": "Q18",
+   "page": 72,
+   "correct": "B",
+   "enonce": "Dans RBAC, comment accorder une nouvelle permission aux 35 agents du rôle « Magasinier » ?",
+   "opts": [
+    "Ajouter la permission directement sur chacun des 35 comptes, un par un",
+    "Modifier le rôle une seule fois : la permission se répercute sur les 35 comptes",
+    "Modifier l’ACL de chaque fichier concerné pour y inscrire les 35 agents",
+    "Créer pour chaque agent un rôle personnel qui porte la nouvelle permission"
+   ],
+   "expl": [
+    "Revient à gérer des droits individuels, comme en DAC : lent et source d’oublis.",
+    "Administration centralisée : la modification se répercute sur les 35 agents. C’est l’intérêt du RBAC.",
+    "On revient à une gestion par objet : l’opération se répète pour chaque fichier.",
+    "On multiplie les rôles : c’est l’explosion de rôles, qui supprime l’intérêt du modèle."
+   ],
+   "part": "PARTIE 4 · ADMINISTRATION PAR LES RÔLES",
+   "retenir": "On modifie le rôle, pas les comptes.",
+   "but": "Mesurer l’intérêt de l’administration par rôle.",
+   "sondage": false,
+   "source": "D. F. Ferraiolo & D. R. Kuhn, « Role-Based Access Controls », 15th National Computer Security Conference, 1992, p. 554-563 ; R. Sandhu, E. Coyne, H. Feinstein & C. Youman, « Role-Based Access Control Models », IEEE Computer 29(2), février 1996 ; ANSI/INCITS 359-2004, « Role Based Access Control » (adoptée le 11 février 2004 ; révisée en 2012)",
+   "cyber": ""
+  },
+  {
+   "n": 19,
+   "qid": "Q19",
+   "page": 76,
+   "correct": "A",
+   "enonce": "Dans une agence, personne ne peut à la fois créer un bon de commande et le valider. Quel principe cette règle applique-t-elle ?",
+   "opts": [
+    "La séparation des tâches (SoD) : initier et approuver sont confiés à deux personnes différentes",
+    "Le moindre privilège : chacun n’a que les droits nécessaires à sa mission",
+    "Le Just-in-Time : les droits ne sont accordés que pour une durée limitée",
+    "La défense en profondeur : plusieurs contrôles se superposent sur la même ressource"
+   ],
+   "expl": [
+    "Initier et approuver sont deux rôles incompatibles : un seul acteur ne contrôle pas lui-même ce qu’il fait.",
+    "Il limite l’étendue des droits d’un rôle ; la règle ici interdit un cumul de rôles, c’est une autre notion.",
+    "Il concerne la durée des droits, pas leur incompatibilité.",
+    "Principe général de superposition ; il ne dit pas qu’une même personne ne peut pas cumuler deux fonctions."
+   ],
+   "part": "PARTIE 4 · ADMINISTRATION PAR LES RÔLES",
+   "retenir": "SoD : séparer initier, approuver, exécuter.",
+   "but": "Distinguer SoD et moindre privilège.",
+   "sondage": false,
+   "source": "D. F. Ferraiolo & D. R. Kuhn, « Role-Based Access Controls », 15th National Computer Security Conference, 1992, p. 554-563 ; R. Sandhu, E. Coyne, H. Feinstein & C. Youman, « Role-Based Access Control Models », IEEE Computer 29(2), février 1996 ; ANSI/INCITS 359-2004, « Role Based Access Control » (adoptée le 11 février 2004 ; révisée en 2012)",
+   "cyber": ""
+  },
+  {
+   "n": 20,
+   "qid": "Q20",
+   "page": 78,
+   "multi": true,
+   "nrep": 4,
+   "situation": "Le TMS de TransLor compte 120 utilisateurs et 4 rôles : Conducteur, Gestionnaire, Comptable, Responsable d’exploitation. Permissions : consulter une tournée ; créer une tournée ; modifier une tournée ; saisir une livraison ; valider la clôture d’une tournée ; émettre une facture ; modifier un tarif ; extraire les rapports d’exploitation.",
+   "consigne": "Pour chacune des 4 demandes ci-dessous, donnez votre réponse : 1 point par réponse exacte.",
+   "exemple": "",
+   "items": [
+    "Construisez la matrice rôles × permissions en respectant le moindre privilège.",
+    "Sans rôles : combien de cases à gérer (120 utilisateurs × 8 permissions) ?",
+    "Avec rôles : combien d’éléments (4 × 8 cases + 120 affectations) ? Quelle réduction ?",
+    "Léa passe gestionnaire : combien d’opérations avec rôles, et sans ?"
+   ],
+   "rows": [
+    [
+     "Les calculs",
+     "Matrice : 14 croix sur 32 cases. Sans rôles : 120 × 8 = 960 cases. Avec rôles : 4 × 8 + 120 = 152 éléments, soit 152 / 960 ≈ 15,8 % : réduction de 84 %. Léa devient gestionnaire : 1 opération avec rôles, contre jusqu’à 8 cases sans."
+    ]
+   ],
+   "table": {
+    "head": [
+     "Permission",
+     "Conducteur",
+     "Gestionnaire",
+     "Comptable",
+     "Resp. exploitation"
+    ],
+    "colW": [
+     4.2,
+     1.9,
+     2.1,
+     1.9,
+     2.33
+    ],
+    "maxH": 3.3,
+    "rows": [
+     [
+      "Consulter une tournée",
+      "✓",
+      "✓",
+      "✓",
+      "✓"
+     ],
+     [
+      "Créer une tournée",
+      "–",
+      "✓",
+      "–",
+      "✓"
+     ],
+     [
+      "Modifier une tournée",
+      "–",
+      "✓",
+      "–",
+      "✓"
+     ],
+     [
+      "Saisir une livraison",
+      "✓",
+      "✓",
+      "–",
+      "–"
+     ],
+     [
+      "Valider la clôture",
+      "–",
+      "–",
+      "–",
+      "✓"
+     ],
+     [
+      "Émettre une facture",
+      "–",
+      "–",
+      "✓",
+      "–"
+     ],
+     [
+      "Modifier un tarif",
+      "–",
+      "–",
+      "✓",
+      "–"
+     ],
+     [
+      "Extraire les rapports",
+      "–",
+      "–",
+      "–",
+      "✓"
+     ]
+    ]
+   },
+   "part": "PARTIE 4 · ADMINISTRATION PAR LES RÔLES",
+   "retenir": "Un rôle trop large casse le moindre privilège. Les croix sont un exemple : d’autres matrices sont justes si elles sont justifiées.",
+   "but": "Construire une matrice de rôles et mesurer le gain de l’administration par rôles.",
+   "source": "D. F. Ferraiolo & D. R. Kuhn, « Role-Based Access Controls », 15th National Computer Security Conference, 1992, p. 554-563 ; R. Sandhu, E. Coyne, H. Feinstein & C. Youman, « Role-Based Access Control Models », IEEE Computer 29(2), février 1996 ; ANSI/INCITS 359-2004, « Role Based Access Control » (adoptée le 11 février 2004 ; révisée en 2012)",
+   "cyber": ""
+  },
+  {
+   "n": 21,
+   "qid": "Q21",
+   "page": 80,
+   "multi": true,
+   "nrep": 4,
+   "situation": "Chez TransLor, Sonia (comptable) peut créer un fournisseur, modifier son RIB et valider le paiement. Un faux courriel demande un changement de RIB : 18 400 € sont virés vers un compte frauduleux. La marge annuelle est d’environ 280 k€.",
+   "consigne": "Pour chacune des 4 demandes ci-dessous, donnez votre réponse : 1 point par réponse exacte.",
+   "exemple": "",
+   "items": [
+    "Quel principe la situation viole-t-elle ?",
+    "Quelle règle de séparation des tâches est la plus précise ? A) « Les comptables doivent être prudents » · B) « Le rôle Gestion des fournisseurs et le rôle Validation des paiements sont incompatibles pour une même personne » · C) « Sonia doit refuser les faux courriels » · D) « Tout changement de RIB est interdit »",
+    "Quel contrôle compensatoire convient à une petite équipe (2 informaticiens, pas de RSSI) ? A) un rappel téléphonique au numéro connu du fournisseur avant tout paiement vers un RIB modifié · B) un antivirus plus récent · C) un mot de passe plus long pour Sonia · D) une formation annuelle uniquement",
+    "Calculez le poids de la fraude dans la marge, puis le nombre de fraudes identiques qui dépasserait 10 % de la marge."
+   ],
+   "rows": [
+    [
+     "1. Principe violé",
+     "La séparation des tâches : une seule personne initie (change le RIB) et exécute (valide le paiement) : aucun regard extérieur."
+    ],
+    [
+     "2. Règle SoD : B",
+     "Les rôles « Gestion des fournisseurs » (créer, modifier un RIB) et « Validation des paiements » sont incompatibles pour une même personne. Règle des quatre yeux : tout changement de RIB est approuvé par un second rôle."
+    ],
+    [
+     "3. Contrôle compensatoire : A",
+     "Rappel téléphonique au numéro connu du fournisseur avant tout paiement vers un RIB modifié ; journalisation des changements de RIB, revue hebdomadaire par la direction."
+    ],
+    [
+     "4. Les chiffres",
+     "18 400 / 280 000 ≈ 6,6 % de la marge. Seuil de 10 % : 28 000 €. Une fraude : 18 400 € < 28 000 € ; deux fraudes : 36 800 € > 28 000 €. Deux fraudes identiques suffisent à dépasser 10 % de la marge."
+    ]
+   ],
+   "table": null,
+   "part": "PARTIE 4 · ADMINISTRATION PAR LES RÔLES",
+   "retenir": "SoD : séparer initier, approuver et exécuter. Quand l’équipe est petite, on compense par un contrôle indépendant du système.",
+   "but": "Appliquer la séparation des tâches au cas de fraude du fil rouge.",
+   "source": "D. F. Ferraiolo & D. R. Kuhn, « Role-Based Access Controls », 15th National Computer Security Conference, 1992, p. 554-563 ; R. Sandhu, E. Coyne, H. Feinstein & C. Youman, « Role-Based Access Control Models », IEEE Computer 29(2), février 1996 ; ANSI/INCITS 359-2004, « Role Based Access Control » (adoptée le 11 février 2004 ; révisée en 2012)",
+   "cyber": ""
+  },
+  {
+   "n": 22,
+   "qid": "Q22",
+   "page": 82,
+   "multi": true,
+   "nrep": 4,
+   "situation": "TransLor ouvre trois agences : Nancy, Metz et Épinal. Hiérarchie : Responsable d’exploitation ⊃ Gestionnaire ⊃ Conducteur (un rôle hérite de celui du dessous). Permissions propres : Conducteur : consulter une tournée, saisir une livraison. Gestionnaire : créer et modifier une tournée. Responsable : valider la clôture, extraire les rapports.",
+   "consigne": "Pour chacune des 4 demandes ci-dessous, donnez votre réponse : 1 point par réponse exacte.",
+   "exemple": "",
+   "items": [
+    "Donnez les permissions effectives de chaque rôle (avec héritage).",
+    "Comptez les liens permission → rôle sans hiérarchie (tout recopié) et avec hiérarchie (propres + liens d’héritage).",
+    "Si l’on crée un rôle par fonction et par agence, combien de rôles ? Et avec en plus « jour » et « nuit » ?",
+    "Que proposez-vous pour éviter cette explosion ? A) un rôle par personne · B) 3 rôles de base, l’agence et l’horaire portés par des attributs évalués à la demande · C) supprimer la hiérarchie · D) un rôle par agence, jour et nuit"
+   ],
+   "rows": [
+    [
+     "1. Permissions effectives",
+     "Conducteur : 2 (consulter, saisir). Gestionnaire : 2 propres + 2 héritées = 4. Responsable : 2 propres + 4 héritées = 6."
+    ],
+    [
+     "2. Les liens",
+     "Sans hiérarchie : 2 + 4 + 6 = 12 liens. Avec hiérarchie : 2 + 2 + 2 = 6 propres, plus 2 liens d’héritage = 8. Gain : 4 liens sur 12, soit 33 %."
+    ],
+    [
+     "3. Les rôles",
+     "Par fonction et par agence : 3 fonctions × 3 agences = 9 rôles. Avec jour et nuit : 9 × 2 = 18 rôles. La gestion se complique à chaque dimension ajoutée : c’est l’explosion de rôles."
+    ],
+    [
+     "4. La recommandation : B",
+     "Garder 3 rôles de base et porter l’agence et l’horaire dans des attributs évalués à la demande (ABAC, partie 6). On combine RBAC et ABAC : « Gestionnaire » + condition « même agence » + condition « heures ouvrées »."
+    ]
+   ],
+   "table": null,
+   "part": "PARTIE 4 · ADMINISTRATION PAR LES RÔLES",
+   "retenir": "La hiérarchie réduit les liens ; chaque dimension ajoutée aux rôles multiplie leur nombre. Au-delà, on passe aux attributs.",
+   "but": "Mesurer le gain de la hiérarchie et reconnaître l’explosion de rôles.",
+   "source": "D. F. Ferraiolo & D. R. Kuhn, « Role-Based Access Controls », 15th National Computer Security Conference, 1992, p. 554-563 ; R. Sandhu, E. Coyne, H. Feinstein & C. Youman, « Role-Based Access Control Models », IEEE Computer 29(2), février 1996 ; ANSI/INCITS 359-2004, « Role Based Access Control » (adoptée le 11 février 2004 ; révisée en 2012)",
+   "cyber": ""
+  },
+  {
+   "n": 23,
+   "qid": "Q23",
+   "page": 86,
+   "correct": "C",
+   "enonce": "Dans une hiérarchie de rôles, le rôle « Responsable » hérite du rôle « Gestionnaire ». Une nouvelle permission est ajoutée au rôle « Gestionnaire ». Que se passe-t-il ?",
+   "opts": [
+    "Seuls les gestionnaires la reçoivent",
+    "Seuls les responsables la reçoivent",
+    "Les gestionnaires et les responsables la reçoivent",
+    "Personne, il faut la ressaisir pour chaque utilisateur"
+   ],
+   "expl": [
+    "Faux : un rôle senior hérite des permissions du rôle de base.",
+    "Faux : c’est l’inverse, la permission part du rôle de base.",
+    "L’héritage fait remonter la permission : le responsable possède tout ce que possède le gestionnaire.",
+    "Faux : c’est précisément ce que le RBAC évite."
+   ],
+   "part": "PARTIE 4 · ADMINISTRATION PAR LES RÔLES",
+   "retenir": "Un rôle senior hérite des permissions du rôle de base.",
+   "but": "Comprendre l’héritage de rôles.",
+   "sondage": false,
+   "source": "D. F. Ferraiolo & D. R. Kuhn, « Role-Based Access Controls », 15th National Computer Security Conference, 1992, p. 554-563 ; R. Sandhu, E. Coyne, H. Feinstein & C. Youman, « Role-Based Access Control Models », IEEE Computer 29(2), février 1996 ; ANSI/INCITS 359-2004, « Role Based Access Control » (adoptée le 11 février 2004 ; révisée en 2012)",
+   "cyber": ""
+  },
+  {
+   "n": 24,
+   "qid": "Q24",
+   "page": 88,
+   "correct": "D",
+   "enonce": "Une très petite entreprise de 6 personnes n’a qu’un seul comptable pour émettre et valider les paiements. Que faire quand la séparation des tâches est impossible ?",
+   "opts": [
+    "Donner un second compte au comptable pour qu’il émette depuis l’un et valide depuis l’autre",
+    "Faire confiance à la personne la plus ancienne dans l’entreprise et s’en tenir là",
+    "Désactiver la validation pour les petits montants afin de ne pas ralentir le travail",
+    "Ajouter un contrôle indépendant, comme une revue mensuelle des paiements par le dirigeant"
+   ],
+   "expl": [
+    "Faux : c’est toujours la même personne. La séparation est fictive.",
+    "Faux : la confiance ne remplace pas un contrôle, surtout face aux faux courriels.",
+    "Faux : on ouvre une brèche exploitable par fractionnement des paiements.",
+    "Un contrôle compensatoire réduit le risque quand on ne peut pas séparer les rôles."
+   ],
+   "part": "PARTIE 4 · ADMINISTRATION PAR LES RÔLES",
+   "retenir": "Pas de SoD possible : contrôle compensatoire indépendant.",
+   "but": "Savoir compenser quand la SoD n’est pas possible.",
+   "sondage": false,
+   "source": "D. F. Ferraiolo & D. R. Kuhn, « Role-Based Access Controls », 15th National Computer Security Conference, 1992, p. 554-563 ; R. Sandhu, E. Coyne, H. Feinstein & C. Youman, « Role-Based Access Control Models », IEEE Computer 29(2), février 1996 ; ANSI/INCITS 359-2004, « Role Based Access Control » (adoptée le 11 février 2004 ; révisée en 2012)",
+   "cyber": ""
+  },
+  {
+   "n": 25,
+   "qid": "Q25",
+   "page": 93,
+   "correct": "B",
+   "enonce": "Nadia est propriétaire d’un fichier Confidentiel dans un système à contrôle obligatoire. Peut-elle le rendre Public pour le partager ?",
+   "opts": [
+    "Oui : le propriétaire d’un fichier décide toujours de qui peut le consulter",
+    "Non : seul l’administrateur de sécurité change les étiquettes",
+    "Oui, si elle a le même niveau que le fichier, car elle le connaît déjà",
+    "Oui, si elle obtient l’accord écrit de son responsable hiérarchique"
+   ],
+   "expl": [
+    "Faux : c’est le DAC. En MAC, la politique est imposée par le système.",
+    "En MAC, la discrétion est supprimée : être propriétaire ne donne aucun pouvoir sur l’étiquette (le label).",
+    "Faux : le niveau permet l’accès, pas le changement d’étiquette.",
+    "Faux : un accord hiérarchique n’est pas un mécanisme du système ; seul l’administrateur de sécurité peut modifier l’étiquette."
+   ],
+   "part": "PARTIE 5 · POLITIQUE IMPOSÉE PAR LE SYSTÈME",
+   "retenir": "En MAC, l’utilisateur ne change pas les labels.",
+   "but": "Opposer MAC et DAC.",
+   "sondage": false,
+   "source": "U.S. DoD, « Trusted Computer System Evaluation Criteria » (Orange Book), CSC-STD-001-83, août 1983 ; DoD 5200.28-STD, décembre 1985 ; Documentation SELinux et AppArmor (projets Linux) ⚠ (dates et versions à vérifier)",
+   "cyber": ""
+  },
+  {
+   "n": 26,
+   "qid": "Q26",
+   "page": 95,
+   "correct": "C",
+   "enonce": "Omar est habilité (Confidentiel, {Logistique}). Il veut lire un objet (Interne, {Logistique, Douane}). Que décide le système ?",
+   "opts": [
+    "Permis : son niveau est supérieur à celui de l’objet",
+    "Refusé : son niveau est insuffisant",
+    "Refusé : le compartiment Douane lui manque",
+    "Permis si le propriétaire de l’objet est d’accord"
+   ],
+   "expl": [
+    "Faux : le niveau ne suffit pas, les compartiments comptent aussi.",
+    "Faux : Confidentiel est supérieur à Interne.",
+    "Son niveau suffit (Confidentiel ≥ Interne), mais {Logistique, Douane} n’est pas inclus dans {Logistique}.",
+    "Faux : en MAC, l’accord du propriétaire ne compte pas."
+   ],
+   "part": "PARTIE 5 · POLITIQUE IMPOSÉE PAR LE SYSTÈME",
+   "retenir": "Il faut tous les compartiments de l’objet.",
+   "but": "Appliquer la dominance avec compartiments.",
+   "sondage": false,
+   "source": "U.S. DoD, « Trusted Computer System Evaluation Criteria » (Orange Book), CSC-STD-001-83, août 1983 ; DoD 5200.28-STD, décembre 1985 ; Documentation SELinux et AppArmor (projets Linux) ⚠ (dates et versions à vérifier)",
+   "cyber": ""
+  },
+  {
+   "n": 27,
+   "qid": "Q27",
+   "page": 99,
+   "correct": "A",
+   "enonce": "Le service web d’un serveur Linux protégé par SELinux est piraté. Quel est l’apport principal du contrôle obligatoire ?",
+   "opts": [
+    "Le processus piraté reste confiné à son domaine",
+    "L’attaque est impossible",
+    "Le mot de passe de l’administrateur est changé automatiquement",
+    "Tous les fichiers sont chiffrés"
+   ],
+   "expl": [
+    "La politique limite ce que le processus peut lire ou écrire, même s’il est compromis : les dégâts sont bornés.",
+    "Faux : aucun contrôle ne garantit l’absence de compromission.",
+    "Faux : SELinux n’agit pas sur les mots de passe.",
+    "Faux : le chiffrement est une autre mesure."
+   ],
+   "part": "PARTIE 5 · POLITIQUE IMPOSÉE PAR LE SYSTÈME",
+   "retenir": "MAC limite les dégâts d’une compromission.",
+   "but": "Comprendre l’apport pratique du MAC.",
+   "sondage": false,
+   "source": "U.S. DoD, « Trusted Computer System Evaluation Criteria » (Orange Book), CSC-STD-001-83, août 1983 ; DoD 5200.28-STD, décembre 1985 ; Documentation SELinux et AppArmor (projets Linux) ⚠ (dates et versions à vérifier)",
+   "cyber": ""
+  },
+  {
+   "n": 28,
+   "qid": "Q28",
+   "page": 101,
+   "multi": true,
+   "nrep": 6,
+   "situation": "Sujets : Marc (Confidentiel, {Exploitation}) ; Sonia (Confidentiel, {Finance}) ; Léa (Interne, {Exploitation}) ; la directrice (Secret, {RH, Finance, Exploitation}). Objets : Planning tournées (Interne, {Exploitation}) ; Tarifs clients (Confidentiel, {Exploitation}) ; Bilan (Confidentiel, {Finance}) ; Procédures chauffeurs (Public, {}).",
+   "consigne": "Pour chacune des 6 demandes ci-dessous, donnez votre réponse : 1 point par réponse exacte.",
+   "exemple": "",
+   "items": [
+    "Marc lit Planning tournées.",
+    "Léa lit Tarifs clients.",
+    "Sonia lit Bilan.",
+    "Marc lit Bilan.",
+    "La directrice lit Tarifs clients.",
+    "Léa lit Procédures chauffeurs."
+   ],
+   "rows": [
+    [
+     "1. Marc lit Planning",
+     "Confidentiel ≥ Interne et {Exploitation} ⊆ {Exploitation}. PERMIS."
+    ],
+    [
+     "2. Léa lit Tarifs",
+     "Interne < Confidentiel : niveau insuffisant (le compartiment est correct). REFUSÉ."
+    ],
+    [
+     "3. Sonia lit Bilan",
+     "Confidentiel ≥ Confidentiel et {Finance} ⊆ {Finance}. PERMIS."
+    ],
+    [
+     "4. Marc lit Bilan",
+     "Niveau suffisant, mais {Finance} ⊄ {Exploitation} : compartiment manquant (besoin d’en connaître). REFUSÉ."
+    ],
+    [
+     "5. La directrice lit Tarifs",
+     "Secret ≥ Confidentiel et {Exploitation} ⊆ {RH, Finance, Exploitation}. PERMIS."
+    ],
+    [
+     "6. Léa lit Procédures",
+     "Interne ≥ Public et l’ensemble vide est inclus dans tout ensemble. PERMIS."
+    ]
+   ],
+   "table": null,
+   "part": "PARTIE 5 · POLITIQUE IMPOSÉE PAR LE SYSTÈME",
+   "retenir": "Permis : 1, 3, 5, 6. Refusés : 2 (niveau), 4 (compartiment). Deux conditions simultanées : niveau suffisant ET tous les compartiments.",
+   "but": "Appliquer la dominance : niveau ET compartiments.",
+   "source": "U.S. DoD, « Trusted Computer System Evaluation Criteria » (Orange Book), CSC-STD-001-83, août 1983 ; DoD 5200.28-STD, décembre 1985 ; Documentation SELinux et AppArmor (projets Linux) ⚠ (dates et versions à vérifier)",
+   "cyber": ""
+  },
+  {
+   "n": 29,
+   "qid": "Q29",
+   "page": 103,
+   "correct": "C",
+   "enonce": "Inès est habilitée (Secret, {RH, Finance}). Elle veut lire une procédure (Public, {}). Que décide le système ?",
+   "opts": [
+    "Refusé : la procédure n’a aucun compartiment, donc aucune habilitation ne correspond",
+    "Refusé : Inès possède plus de compartiments que la procédure n’en demande",
+    "Permis : le niveau suffit, et l’ensemble vide est inclus dans tout ensemble",
+    "Permis, mais seulement avec l’accord du propriétaire de la procédure"
+   ],
+   "expl": [
+    "Faux : l’absence de compartiment n’impose aucune condition.",
+    "Faux : avoir plus de compartiments n’est jamais un obstacle à la lecture.",
+    "Secret ≥ Public, et {} ⊆ {RH, Finance}. Les deux conditions sont réunies.",
+    "Faux : le propriétaire n’intervient pas en MAC."
+   ],
+   "part": "PARTIE 5 · POLITIQUE IMPOSÉE PAR LE SYSTÈME",
+   "retenir": "Objet sans compartiment : seul le niveau compte.",
+   "but": "Maîtriser le cas de l’ensemble vide.",
+   "sondage": false,
+   "source": "U.S. DoD, « Trusted Computer System Evaluation Criteria » (Orange Book), CSC-STD-001-83, août 1983 ; DoD 5200.28-STD, décembre 1985 ; Documentation SELinux et AppArmor (projets Linux) ⚠ (dates et versions à vérifier)",
+   "cyber": ""
+  },
+  {
+   "n": 30,
+   "qid": "Q30",
+   "page": 108,
+   "correct": "B",
+   "enonce": "Un composant intercepte chaque requête vers une application et interroge un serveur de politiques avant de laisser passer. Quel est son rôle dans l’architecture ABAC ?",
+   "opts": [
+    "PDP : il prend la décision",
+    "PEP : il applique la décision",
+    "PAP : il écrit les politiques",
+    "PIP : il fournit les attributs"
+   ],
+   "expl": [
+    "Faux : le PDP est le serveur de politiques interrogé, pas le composant qui intercepte.",
+    "Le point d’application intercepte l’accès et fait respecter la décision. Il ne décide pas lui-même.",
+    "Faux : le PAP sert aux administrateurs qui rédigent les règles.",
+    "Faux : le PIP renseigne le PDP sur les attributs, il ne bloque rien."
+   ],
+   "part": "PARTIE 6 · DÉCISIONS DYNAMIQUES",
+   "retenir": "PEP applique, PDP décide, PAP écrit, PIP renseigne.",
+   "but": "Distinguer les quatre composants.",
+   "sondage": false,
+   "source": "V. Hu et al., NIST SP 800-162, « Guide to Attribute Based Access Control (ABAC) Definition and Considerations », janvier 2014 (mis à jour en 2019)",
+   "cyber": ""
+  },
+  {
+   "n": 31,
+   "qid": "Q31",
+   "page": 110,
+   "multi": true,
+   "nrep": 3,
+   "situation": "Politique : PERMIS de lire un dossier client si rôle = gestionnaire ET appareil = géré ET heure entre 7 h et 20 h ET classification ≤ Confidentiel. Sinon REFUSÉ. Requêtes : 1. Marc, gestionnaire, PC géré, 10 h, dossier Confidentiel. 2. Marc, gestionnaire, PC personnel, 10 h, dossier Confidentiel. 3. Marc, gestionnaire, PC géré, 23 h, dossier Confidentiel. 4. Karim, intérimaire, PC géré, 10 h, dossier Interne.",
+   "consigne": "Pour chacune des 3 demandes ci-dessous, donnez votre réponse : 1 point par réponse exacte.",
+   "exemple": "",
+   "items": [
+    "Évaluez chaque requête : permis ou refusé.",
+    "Pour chaque refus, citez la condition non remplie.",
+    "Pourquoi cette politique est-elle difficile à exprimer en RBAC seul ?"
+   ],
+   "rows": [
+    [
+     "1. Marc, PC géré, 10 h, Confidentiel",
+     "Rôle gestionnaire ✓ ; appareil géré ✓ ; 10 h dans 7 h – 20 h ✓ ; Confidentiel ≤ Confidentiel ✓. PERMIS."
+    ],
+    [
+     "2. Marc, PC personnel",
+     "Appareil personnel : la condition « géré » n’est pas remplie. REFUSÉ."
+    ],
+    [
+     "3. Marc, PC géré, 23 h",
+     "23 h hors de la plage 7 h – 20 h. REFUSÉ."
+    ],
+    [
+     "4. Karim, intérimaire",
+     "Rôle intérimaire : la condition « gestionnaire » n’est pas remplie, même si le reste est valide. REFUSÉ."
+    ],
+    [
+     "5. Pourquoi pas en RBAC seul ?",
+     "Le rôle ne connaît ni l’heure ni l’appareil : il faudrait créer des rôles « Gestionnaire de jour sur PC géré », « Gestionnaire de nuit »… (explosion de rôles). En ABAC, le même rôle donne des décisions différentes selon le contexte."
+    ]
+   ],
+   "table": null,
+   "part": "PARTIE 6 · DÉCISIONS DYNAMIQUES",
+   "retenir": "Une requête permise sur quatre. ABAC = souplesse et précision contextuelle ; prix : des politiques à tester et des attributs fiables.",
+   "but": "Évaluer une politique ABAC condition par condition.",
+   "source": "V. Hu et al., NIST SP 800-162, « Guide to Attribute Based Access Control (ABAC) Definition and Considerations », janvier 2014 (mis à jour en 2019)",
+   "cyber": ""
+  },
+  {
+   "n": 32,
+   "qid": "Q32",
+   "page": 114,
+   "correct": "D",
+   "enonce": "Politique : PERMIS d’exporter un rapport si service = Qualité ET réseau = interne ET jour = ouvré. Hugo (service Qualité) demande l’export mardi depuis le Wi-Fi invité. Décision ?",
+   "opts": [
+    "Permis : il est dans le bon service un jour ouvré",
+    "Refusé : mardi n’est pas ouvré",
+    "Permis, car Hugo est connu de l’annuaire",
+    "Refusé : le réseau n’est pas interne"
+   ],
+   "expl": [
+    "Faux : les trois conditions doivent être vraies.",
+    "Faux : mardi est un jour ouvré.",
+    "Faux : être connu ne suffit pas, la politique ajoute des conditions.",
+    "Service ✓, jour ouvré ✓, mais le Wi-Fi invité n’est pas le réseau interne : une condition fausse suffit."
+   ],
+   "part": "PARTIE 6 · DÉCISIONS DYNAMIQUES",
+   "retenir": "Avec des ET, une seule condition fausse refuse.",
+   "but": "Évaluer une politique par ET logique.",
+   "sondage": false,
+   "source": "V. Hu et al., NIST SP 800-162, « Guide to Attribute Based Access Control (ABAC) Definition and Considerations », janvier 2014 (mis à jour en 2019)",
+   "cyber": ""
+  },
+  {
+   "n": 33,
+   "qid": "Q33",
+   "page": 116,
+   "correct": "A",
+   "enonce": "Le même gestionnaire est accepté à 10 h mais refusé à 23 h pour le même dossier. Quelle famille d’attributs explique la différence ?",
+   "opts": [
+    "L’environnement (ici l’heure)",
+    "Le sujet (son rôle)",
+    "La ressource (sa classification)",
+    "L’action (lire ou modifier)"
+   ],
+   "expl": [
+    "Le sujet, la ressource et l’action sont identiques : seul le contexte change.",
+    "Faux : le rôle est le même à 10 h et à 23 h.",
+    "Faux : le dossier est le même.",
+    "Faux : l’action demandée est la même."
+   ],
+   "part": "PARTIE 6 · DÉCISIONS DYNAMIQUES",
+   "retenir": "Heure, lieu, réseau, appareil : attributs d’environnement.",
+   "but": "Identifier un attribut d’environnement.",
+   "sondage": false,
+   "source": "V. Hu et al., NIST SP 800-162, « Guide to Attribute Based Access Control (ABAC) Definition and Considerations », janvier 2014 (mis à jour en 2019)",
+   "cyber": ""
+  },
+  {
+   "n": 34,
+   "qid": "Q34",
+   "page": 118,
+   "multi": true,
+   "nrep": 6,
+   "situation": "Règle métier de TransLor : « Les fiches de paie (Confidentiel) ne sont consultables que par un agent RH, depuis un poste géré, du lundi au vendredi de 8 h à 18 h, et seulement pour les salariés de son agence. »",
+   "consigne": "Pour chacune des 6 demandes, choisissez la bonne réponse (une lettre, ou PERMIS / REFUSÉ) : 1 point par demande correcte.",
+   "exemple": "Exemple (non compté) : Karim, comptable, poste géré, mardi 10 h, fiche de Nancy → REFUSÉ, car son service n’est pas RH.",
+   "items": [
+    "Quel élément de la règle est un attribut d’ENVIRONNEMENT ? A) le service = RH · B) le type = fiche de paie · C) l’appareil = géré · D) l’agence du salarié concerné",
+    "Quelle politique traduit correctement la règle ? A) PERMIS SI service = RH OU appareil = géré OU jour ouvré · B) PERMIS SI service = RH ET type = fiche de paie ET agence du sujet = agence de la ressource ET appareil = géré ET jour ouvré ET heure entre 8 h et 18 h · C) PERMIS SI service = RH ET appareil = géré · D) PERMIS SI type = fiche de paie ET heure entre 8 h et 18 h",
+    "(a) Paul, RH Nancy, poste géré, mardi 10 h, fiche d’un salarié de Nancy : décision ?",
+    "(b) Paul, RH Nancy, poste géré, mardi 10 h, fiche d’un salarié de Metz : décision ?",
+    "(c) Paul, RH Nancy, PC personnel, samedi 9 h, fiche d’un salarié de Nancy : décision ?",
+    "Quel attribut est le plus fragile ? A) le jour de la semaine · B) le type de document · C) l’heure du serveur · D) « appareil géré », qui dépend d’un inventaire à jour"
+   ],
+   "rows": [
+    [
+     "1. Environnement : C",
+     "L’appareil est une condition du contexte (comme le jour et l’heure). A est un attribut du sujet, B de la ressource, D un attribut de la ressource comparé à celui du sujet."
+    ],
+    [
+     "2. La politique : B",
+     "Elle contient toutes les conditions reliées par ET. A utilise des OU : une seule condition vraie suffirait. C et D oublient des conditions (agence, jour, service)."
+    ],
+    [
+     "3a. Paul, Nancy, fiche de Nancy : PERMIS",
+     "Toutes les conditions sont vraies."
+    ],
+    [
+     "3b. Paul, Nancy, fiche de Metz : REFUSÉ",
+     "L’agence du sujet est différente de l’agence de la ressource."
+    ],
+    [
+     "3c. PC personnel, samedi 9 h : REFUSÉ",
+     "Appareil non géré ET jour non ouvré : deux conditions fausses."
+    ],
+    [
+     "4. Attribut fragile : D",
+     "L’appareil géré dépend d’un inventaire à jour : un attribut mal renseigné ou falsifié ouvre ou bloque l’accès (le PIP est critique). Le jour et l’heure viennent d’horloges contrôlées."
+    ]
+   ],
+   "table": null,
+   "part": "PARTIE 6 · DÉCISIONS DYNAMIQUES",
+   "retenir": "Une politique = des attributs + des conditions. Elle se teste sur des cas permis ET refusés, et ses attributs doivent être fiables.",
+   "but": "Lire une règle ABAC, la traduire en conditions et la tester.",
+   "source": "V. Hu et al., NIST SP 800-162, « Guide to Attribute Based Access Control (ABAC) Definition and Considerations », janvier 2014 (mis à jour en 2019)",
+   "cyber": "Une politique ABAC mal écrite (un OU à la place d’un ET) ouvre un accès que la règle métier interdit : on la teste toujours sur des cas permis ET refusés."
+  },
+  {
+   "n": 35,
+   "qid": "Q35",
+   "page": 120,
+   "correct": "D",
+   "enonce": "Quel est le principal risque d’une politique ABAC reposant sur l’attribut « appareil géré » si l’inventaire des appareils est incomplet ?",
+   "opts": [
+    "Le PDP ne peut plus évaluer la politique et refuse toutes les demandes sans exception",
+    "La politique elle-même devient publique, ce qui expose les règles à un attaquant",
+    "Le PEP applique la décision à la place du PDP, ce qui rend la règle incohérente",
+    "Des accès légitimes bloqués ou des accès illégitimes acceptés, selon que l’inventaire oublie un appareil ou en déclare un à tort"
+   ],
+   "expl": [
+    "Faux : le PDP évalue sur les attributs qu’il reçoit ; il ne s’arrête pas.",
+    "Faux : l’inventaire n’a aucun lien avec la confidentialité de la politique.",
+    "Faux : le PEP applique ; il ne décide pas, et un inventaire faux n’inverse pas les rôles.",
+    "La décision n’est aussi fiable que les attributs : un inventaire faux fausse la décision dans les deux sens."
+   ],
+   "part": "PARTIE 6 · DÉCISIONS DYNAMIQUES",
+   "retenir": "Attributs faux = décisions fausses.",
+   "but": "Comprendre la dépendance de l’ABAC à la qualité des attributs.",
+   "sondage": false,
+   "source": "V. Hu et al., NIST SP 800-162, « Guide to Attribute Based Access Control (ABAC) Definition and Considerations », janvier 2014 (mis à jour en 2019)",
+   "cyber": ""
+  },
+  {
+   "n": 36,
+   "qid": "Q36",
+   "page": 125,
+   "correct": "A",
+   "enonce": "Dans une politique OrBAC, « Gestionnaire » désigne…",
+   "opts": [
+    "Un rôle : l’abstraction d’un ensemble de sujets",
+    "Un sujet : une personne précise, comme Marc",
+    "Une vue : l’abstraction d’un ensemble d’objets, comme les tournées ou les factures",
+    "Un contexte : une condition de validité, comme « heures ouvrées »"
+   ],
+   "expl": [
+    "Un rôle regroupe des sujets concrets (Marc, Nadia) selon leur fonction.",
+    "Faux : le sujet concret est Marc, pas « Gestionnaire ».",
+    "Faux : une vue regroupe des objets, pas des sujets.",
+    "Faux : un contexte est une condition d’application de la règle."
+   ],
+   "part": "PARTIE 7 · POLITIQUES ORGANISATIONNELLES",
+   "retenir": "Rôle = sujets ; activité = actions ; vue = objets.",
+   "but": "Placer chaque élément au bon niveau d’abstraction.",
+   "sondage": false,
+   "source": "A. Abou El Kalam et al., « Organization based access control », IEEE POLICY 2003, p. 120-131",
+   "cyber": ""
+  },
+  {
+   "n": 37,
+   "qid": "Q37",
+   "page": 127,
+   "correct": "B",
+   "enonce": "Permission(Épinal, Magasinier, Consulter, Stocks, HorairesOuverts). Que représente « HorairesOuverts » ?",
+   "opts": [
+    "L’organisation, c’est-à-dire l’entité à laquelle la règle s’applique, ici une agence",
+    "Le contexte : la condition précise dans laquelle la permission est valable (ici, les horaires d’ouverture)",
+    "La vue, c’est-à-dire l’ensemble des objets concernés par la permission",
+    "L’activité, c’est-à-dire l’action que la règle autorise sur ces objets"
+   ],
+   "expl": [
+    "Faux : l’organisation est Épinal, premier élément.",
+    "Le cinquième élément d’une règle OrBAC est le contexte.",
+    "Faux : la vue est « Stocks ».",
+    "Faux : l’activité est « Consulter »."
+   ],
+   "part": "PARTIE 7 · POLITIQUES ORGANISATIONNELLES",
+   "retenir": "Permission(organisation, rôle, activité, vue, contexte).",
+   "but": "Savoir lire les cinq éléments.",
+   "sondage": false,
+   "source": "A. Abou El Kalam et al., « Organization based access control », IEEE POLICY 2003, p. 120-131",
+   "cyber": ""
+  },
+  {
+   "n": 38,
+   "qid": "Q38",
+   "page": 129,
+   "multi": true,
+   "nrep": 5,
+   "situation": "Règle 1 : à l’agence de Metz, un gestionnaire peut modifier une tournée pendant les heures ouvrées. Règle 2 : un comptable ne peut jamais modifier une tournée. Règle 3 : en cas d’urgence, le responsable d’exploitation doit être prévenu de toute modification de tournée. Une règle OrBAC s’écrit Type(Organisation, Rôle, Activité, Vue, Contexte).",
+   "consigne": "Pour chacune des 5 demandes, choisissez la bonne réponse (une lettre) : 1 point par demande correcte.",
+   "exemple": "Exemple (non compté) : « un comptable peut consulter une tournée » s’écrit Permission(TransLor, Comptable, Consulter, Tournées, Toujours).",
+   "items": [
+    "Quelle formule traduit la règle 1 ? A) Obligation(Metz, Gestionnaire, Modifier, Tournées, HeuresOuvrées) · B) Permission(Metz, Gestionnaire, Modifier, Tournées, HeuresOuvrées) · C) Permission(TransLor, Comptable, Modifier, Tournées, HeuresOuvrées) · D) Interdiction(Metz, Gestionnaire, Modifier, Tournées, HeuresOuvrées)",
+    "Quelle formule traduit la règle 2 ? A) Permission(TransLor, Comptable, Modifier, Tournées, Toujours) · B) Obligation(TransLor, Comptable, Modifier, Tournées, Toujours) · C) Interdiction(Metz, Gestionnaire, Modifier, Tournées, Toujours) · D) Interdiction(TransLor, Comptable, Modifier, Tournées, Toujours)",
+    "Quelle formule traduit la règle 3 ? A) Obligation(TransLor, ResponsableExploitation, Être prévenu, Modifications de tournées, Urgence) · B) Permission(TransLor, ResponsableExploitation, Être prévenu, Modifications de tournées, Urgence) · C) Interdiction(TransLor, ResponsableExploitation, Modifier, Tournées, Urgence) · D) Obligation(TransLor, Gestionnaire, Modifier, Tournées, Toujours)",
+    "Dans la règle 1, quel élément est le contexte ? A) Gestionnaire · B) Modifier · C) HeuresOuvrées · D) Tournées",
+    "Marc, gestionnaire à Metz, veut modifier la tournée T-1042 à 22 h un mardi. Quelle décision ? A) PERMIS, car il est gestionnaire · B) PERMIS, car la tournée existe · C) REFUSÉ, car le contexte HeuresOuvrées est faux · D) REFUSÉ, car il est à Metz"
+   ],
+   "rows": [
+    [
+     "1. Règle 1 : B",
+     "C’est une permission accordée dans l’organisation Metz au rôle Gestionnaire. A et D changent le type ; C change l’organisation et le rôle."
+    ],
+    [
+     "2. Règle 2 : D",
+     "Interdiction pour le rôle Comptable, en tout temps. A inverse le sens ; B est une obligation ; C vise le mauvais rôle."
+    ],
+    [
+     "3. Règle 3 : A",
+     "Une obligation : le responsable doit être prévenu. B en fait une permission ; C et D changent l’activité ou le rôle."
+    ],
+    [
+     "4. Contexte : C",
+     "HeuresOuvrées est évalué au moment de la requête. Gestionnaire est un rôle, Modifier une activité, Tournées une vue."
+    ],
+    [
+     "5. Instanciation : C",
+     "À 22 h le contexte est faux : la règle ne s’applique pas, accès refusé. A et B ignorent le contexte ; D confond l’organisation avec une raison de refus."
+    ]
+   ],
+   "table": null,
+   "part": "PARTIE 7 · POLITIQUES ORGANISATIONNELLES",
+   "retenir": "OrBAC ajoute à RBAC le contexte, les interdictions et obligations, et la prise en compte de l’organisation.",
+   "but": "Associer des phrases métier à des règles OrBAC à cinq éléments.",
+   "source": "A. Abou El Kalam et al., « Organization based access control », IEEE POLICY 2003, p. 120-131",
+   "cyber": "Une règle OrBAC explicite l’interdiction et l’obligation, pas seulement la permission : on évite la faute de n’écrire que ce qui est permis et d’oublier ce qui doit être interdit ou notifié."
+  },
+  {
+   "n": 39,
+   "qid": "Q39",
+   "page": 132,
+   "correct": "C",
+   "enonce": "Quelle règle OrBAC ne peut pas s’exprimer dans un RBAC de base ?",
+   "opts": [
+    "« Un conducteur peut consulter une tournée, quelle que soit la situation et à toute heure »",
+    "« Marc, Nadia et Karim reçoivent le rôle Comptable pour la durée de leur mission »",
+    "« Le responsable doit être prévenu de toute modification en cas d’urgence »",
+    "« Le gestionnaire hérite des permissions du conducteur, y compris les nouvelles »"
+   ],
+   "expl": [
+    "Faux : c’est une simple permission d’un rôle, exprimable en RBAC.",
+    "Faux : c’est une affectation d’utilisateurs à un rôle, exprimable en RBAC.",
+    "Obligation avec contexte : le RBAC de base n’a ni obligation ni contexte. C’est précisément ce que OrBAC ajoute.",
+    "Faux : c’est la hiérarchie de rôles, présente dans le RBAC hiérarchique."
+   ],
+   "part": "PARTIE 7 · POLITIQUES ORGANISATIONNELLES",
+   "retenir": "Obligation + contexte : OrBAC.",
+   "but": "Identifier l’apport d’OrBAC.",
+   "sondage": false,
+   "source": "A. Abou El Kalam et al., « Organization based access control », IEEE POLICY 2003, p. 120-131",
+   "cyber": ""
+  },
+  {
+   "n": 40,
+   "qid": "Q40",
+   "page": 136,
+   "multi": true,
+   "nrep": 5,
+   "situation": "TransLor doit protéger quatre besoins : A. Le partage du dossier « Exploitation » entre 15 gestionnaires. B. Les droits du TMS pour 120 salariés. C. L’accès aux fichiers de paie, uniquement depuis un poste géré, aux heures ouvrées. D. Un serveur d’archives juridiques dont les données ne doivent jamais fuiter vers un niveau inférieur.",
+   "consigne": "Pour chacune des 5 demandes, choisissez le modèle (ou la réponse) le plus adapté : 1 point par demande correcte.",
+   "exemple": "Exemple (non compté) : « un site de documentation interne ouvert à tous les salariés » → aucun modèle sophistiqué : un simple groupe « salariés » suffit.",
+   "items": [
+    "Besoin A (partage Exploitation) : quel modèle principal ? 1) RBAC · 2) DAC encadré · 3) MAC Bell-LaPadula · 4) ABAC",
+    "Besoin B (droits du TMS, 120 salariés) : quel modèle principal ? 1) DAC · 2) ABAC · 3) RBAC · 4) MAC",
+    "Besoin C (fichiers de paie, poste géré, heures ouvrées) : quel modèle principal ? 1) ABAC · 2) DAC · 3) RBAC seul · 4) MAC Bell-LaPadula",
+    "Besoin D (archives juridiques, pas de fuite vers un niveau inférieur) : quel modèle principal ? 1) DAC · 2) RBAC · 3) ABAC · 4) MAC avec Bell-LaPadula",
+    "Quel est le risque résiduel du besoin C ? 1) l’heure du serveur est trop précise · 2) un appareil « géré » en réalité compromis ou mal inventorié ouvre l’accès · 3) le fichier de paie est trop volumineux · 4) les rôles sont trop nombreux"
+   ],
+   "rows": [
+    [
+     "A. Partage Exploitation : 2 (DAC encadré)",
+     "Équipe restreinte, souplesse utile, avec délégations contrôlées et revues d’ACL. RBAC serait lourd pour 15 personnes."
+    ],
+    [
+     "B. Droits du TMS : 3 (RBAC)",
+     "120 utilisateurs, fonctions stables : administration centralisée et audit. Le DAC dériverait."
+    ],
+    [
+     "C. Fichiers de paie : 1 (ABAC)",
+     "La décision dépend de l’appareil et de l’heure : attributs de contexte. En pratique : RBAC pour l’accès de base, ABAC pour le contexte."
+    ],
+    [
+     "D. Archives juridiques : 4 (MAC avec Bell-LaPadula)",
+     "Étanchéité par étiquettes, interdiction d’écrire vers le bas : le seul besoin où la confidentialité absolue prime."
+    ],
+    [
+     "Risque résiduel (C) : 2",
+     "Un attribut falsifié ou mal inventorié ouvre l’accès : la fiabilité de la source d’attributs (PIP) est critique."
+    ]
+   ],
+   "table": null,
+   "part": "PARTIE 8 · MISE EN PRATIQUE ET SYNTHÈSE",
+   "retenir": "Le bon réflexe : partir du besoin et du risque, pas du modèle.",
+   "but": "Partir du besoin et du risque, pas du modèle.",
+   "source": "production de l’auteur",
+   "cyber": "Choisir le mauvais modèle laisse la faille ouverte : un DAC sur des données classifiées ou un RBAC seul sur un contexte à risque. Faute évitée : appliquer le même modèle à tous les besoins."
+  },
+  {
+   "n": 41,
+   "qid": "Q41",
+   "page": 138,
+   "correct": "B",
+   "enonce": "Une clinique veut que seuls les médecins du service concerné consultent un dossier patient, et seulement quand ils sont de garde. Quel est le modèle le plus adapté ?",
+   "opts": [
+    "DAC pur, chacun partage ses dossiers",
+    "ABAC, avec les attributs service et garde",
+    "Biba, pour protéger l’intégrité",
+    "Aucun modèle, un mot de passe commun suffit"
+   ],
+   "expl": [
+    "Faux : données de santé, le propriétaire ne doit pas décider seul.",
+    "La décision dépend de l’appartenance au service et d’un contexte (garde) : ce sont des attributs.",
+    "Faux : le besoin est l’accès conditionné, pas l’intégrité.",
+    "Faux : pas d’imputabilité et risque majeur."
+   ],
+   "part": "PARTIE 8 · MISE EN PRATIQUE ET SYNTHÈSE",
+   "retenir": "Contexte (garde, heure, lieu) : ABAC.",
+   "but": "Choisir un modèle depuis un besoin.",
+   "sondage": false,
+   "source": "production de l’auteur",
+   "cyber": ""
+  },
+  {
+   "n": 42,
+   "qid": "Q42",
+   "page": 141,
+   "multi": true,
+   "nrep": 3,
+   "situation": "Matrice (R = lecture, W = écriture, X = exécution). Objets : Tarifs, Factures, Script. Marc : Tarifs R, Factures R, Script RX. Sonia : Tarifs R, Factures RW, Script aucun. Léa : Tarifs aucun, Factures aucun, Script X.",
+   "consigne": "Pour chacune des 3 demandes ci-dessous, donnez votre réponse : 1 point par réponse exacte.",
+   "exemple": "",
+   "items": [
+    "Écrivez l’ACL de l’objet Factures.",
+    "Écrivez la liste de capabilities de Marc.",
+    "Quelle lecture est la plus pratique pour « qui peut modifier Factures ? », et pour « que peut faire Marc ? »"
+   ],
+   "rows": [
+    [
+     "1. ACL de Factures (colonne)",
+     "Marc : R ; Sonia : RW ; Léa : aucun droit."
+    ],
+    [
+     "2. Capabilities de Marc (ligne)",
+     "Tarifs : R ; Factures : R ; Script : RX."
+    ],
+    [
+     "3. Quelle lecture ?",
+     "« Qui peut modifier Factures ? » : l’ACL, on lit directement Sonia. « Que peut faire Marc ? » : les capabilities, on lit sa liste."
+    ]
+   ],
+   "table": null,
+   "part": "PARTIE 8 · MISE EN PRATIQUE ET SYNTHÈSE",
+   "retenir": "ACL : centrée sur l’objet, idéale pour l’audit d’une ressource. Capabilities : centrées sur le sujet, idéales pour le moindre privilège. Les deux contiennent la même information.",
+   "but": "Passer de la matrice à l’ACL et aux capabilities.",
+   "source": "production de l’auteur",
+   "cyber": ""
+  },
+  {
+   "n": 43,
+   "qid": "Q43",
+   "page": 144,
+   "correct": "C",
+   "enonce": "Quel principe consiste à ne donner à chacun que les droits strictement nécessaires à sa mission ?",
+   "opts": [
+    "La séparation des tâches : deux personnes interviennent sur une opération sensible",
+    "La défense en profondeur : plusieurs protections se superposent",
+    "Le moindre privilège : limiter les droits de chaque compte au minimum nécessaire à sa mission",
+    "La non-répudiation : on ne peut pas nier avoir effectué une action"
+   ],
+   "expl": [
+    "Elle empêche un cumul de fonctions ; elle ne limite pas l’étendue de chaque droit.",
+    "Elle superpose des contrôles ; elle ne réduit pas le périmètre des droits individuels.",
+    "On limite l’étendue des droits d’un rôle ou d’un compte au minimum nécessaire.",
+    "Elle prouve qu’une action a bien été faite par quelqu’un ; elle ne limite pas les droits."
+   ],
+   "part": "PARTIE 8 · MISE EN PRATIQUE ET SYNTHÈSE",
+   "retenir": "Moindre privilège : le minimum nécessaire.",
+   "but": "Fixer le vocabulaire des principes.",
+   "sondage": false,
+   "source": "production de l’auteur",
+   "cyber": ""
+  },
+  {
+   "n": 44,
+   "qid": "Q44",
+   "page": 146,
+   "multi": true,
+   "nrep": 5,
+   "situation": "Retour sur la fraude au RIB de 18 400 € : Sonia créait un fournisseur, modifiait son RIB et validait le paiement. Le partage « Fournisseurs » était en DAC ; les droits du TMS étaient en RBAC mais avec un rôle Comptable trop large. La marge annuelle est d’environ 280 k€.",
+   "consigne": "Pour chacune des 5 demandes, choisissez la bonne réponse (une lettre, ou le chiffre) : 1 point par demande correcte.",
+   "exemple": "",
+   "items": [
+    "Qu’est-ce qui a failli côté DAC ? A) le propriétaire du partage a élargi les droits sans contrôle · B) le serveur était trop ancien · C) le RIB était trop long · D) la règle d’héritage",
+    "Qu’est-ce qui a failli côté RBAC ? A) le nombre de rôles était trop faible · B) aucun lien utilisateur–rôle · C) le rôle Comptable cumulait gestion des fournisseurs et validation des paiements · D) la hiérarchie des rôles",
+    "Quel correctif ABAC est le plus pertinent ? A) bloquer tout paiement · B) ajouter un rôle · C) interdire les ACL · D) refuser « valider un paiement » si l’âge du RIB est inférieur à 48 h et le montant au-dessus d’un seuil, sauf double validation",
+    "Quelle perte aurait été évitée ? A) 280 000 € · B) 18 400 € · C) 6,6 % de 18 400 € · D) 0 €",
+    "Cette perte représente quel pourcentage de la marge annuelle (280 k€) ? 1) 6,6 % · 2) 66 % · 3) 0,66 % · 4) 15 %"
+   ],
+   "rows": [
+    [
+     "1. DAC : A",
+     "Le propriétaire du partage a élargi les droits sans contrôle. Les autres propositions n’ont aucun rapport avec les droits."
+    ],
+    [
+     "2. RBAC : C",
+     "Le rôle Comptable était trop large et ne séparait pas gestion fournisseur et validation. A, B et D ne décrivent pas le défaut observé."
+    ],
+    [
+     "3. ABAC : D",
+     "La règle sur l’âge du RIB ajoute un attribut de contexte : elle bloque sans empêcher les paiements légitimes (double validation)."
+    ],
+    [
+     "4. Perte évitée : B",
+     "18 400 €. 280 000 € est la marge totale ; C est un calcul absurde."
+    ],
+    [
+     "5. Poids dans la marge : 1",
+     "18 400 / 280 000 ≈ 6,6 %. 66 % et 0,66 % décalent la virgule ; 15 % est inventé."
+    ]
+   ],
+   "table": null,
+   "part": "PARTIE 8 · MISE EN PRATIQUE ET SYNTHÈSE",
+   "retenir": "Défense en profondeur : DAC encadré + RBAC avec SoD + ABAC contextuel. Chaque modèle couvre une faille différente.",
+   "but": "Montrer que chaque modèle couvre une faille différente.",
+   "source": "production de l’auteur",
+   "cyber": "La fraude au faux RIB exploite l’accumulation de droits et l’absence de contexte : séparer, limiter et conditionner sont trois défenses distinctes. Faute évitée : croire qu’un seul modèle suffit."
+  },
+  {
+   "n": 45,
+   "qid": "Q45",
+   "page": 149,
+   "multi": true,
+   "nrep": 5,
+   "situation": "Événements à TransLor : (a) arrivée de Nadia, comptable ; (b) Léa, conductrice, devient gestionnaire ; (c) fin de mission de Karim, intérimaire. L’audit trouve 12 comptes d’anciens salariés encore actifs, en plus des 120 comptes de salariés.",
+   "consigne": "Pour chacune des 5 demandes, choisissez la bonne réponse (une lettre ou le chiffre) : 1 point par demande correcte.",
+   "exemple": "",
+   "items": [
+    "Arrivée de Nadia (a) : quelle séquence est correcte ? A) copier le compte de Sonia · B) donner un accès administrateur « le temps de voir » · C) créer un compte nominatif, affecter le rôle Comptable, faire valider par le manager, puis activer · D) activer le compte avant toute validation",
+    "Mutation de Léa (b) : quelle séquence est correcte ? A) ajouter le rôle Gestionnaire et garder Conducteur · B) retirer le rôle Conducteur, ajouter le rôle Gestionnaire, faire valider et journaliser · C) créer un second compte pour le nouveau rôle · D) ne rien changer",
+    "Départ de Karim (c) : quelle séquence est correcte ? A) attendre la fin du mois · B) changer son mot de passe seulement · C) supprimer immédiatement toutes ses données · D) désactiver le compte le dernier jour, récupérer le matériel, retirer les rôles, puis archiver",
+    "Quelle part des comptes actifs (120 + 12 = 132) est orpheline ? 1) 9,1 % · 2) 10 % · 3) 12 % · 4) 0,1 %",
+    "Quel indicateur de suivi mensuel est le plus pertinent ? A) comptes actifs d’anciens salariés au dernier jour du mois, cible 0 · B) nombre de connexions · C) nombre de rôles créés · D) nombre de courriels envoyés"
+   ],
+   "rows": [
+    [
+     "1. Arrivée (a) : C",
+     "Créer un compte nominatif ; affecter le rôle « Comptable » selon la fiche de poste ; faire valider par le manager ; activer ; informer l’utilisatrice des règles."
+    ],
+    [
+     "2. Mutation (b) : B",
+     "Retirer le rôle Conducteur ; ajouter le rôle Gestionnaire ; faire valider ; journaliser. Risque : sans retrait, Léa cumule des droits (accumulation) et peut contourner la séparation des tâches."
+    ],
+    [
+     "3. Départ (c) : D",
+     "Désactiver le compte le dernier jour ; récupérer le matériel ; retirer les rôles ; archiver puis supprimer après la durée de conservation."
+    ],
+    [
+     "4. Le calcul : 1 (9,1 %)",
+     "12 comptes orphelins sur 132 comptes actifs : 12 / 132 ≈ 9,1 %."
+    ],
+    [
+     "5. Indicateur : A",
+     "Nombre de comptes actifs d’anciens salariés au dernier jour du mois (cible : 0), et délai moyen de désactivation après départ (cible : 0 jour)."
+    ]
+   ],
+   "table": null,
+   "part": "PARTIE 8 · MISE EN PRATIQUE ET SYNTHÈSE",
+   "retenir": "Chiffre clé : 9,1 % de comptes orphelins. Le départ oublié est le risque principal ; la mutation sans retrait fait grossir les droits.",
+   "but": "Reconnaître le cycle de vie des accès et mesurer l’écart.",
+   "source": "production de l’auteur",
+   "cyber": ""
+  },
+  {
+   "n": 46,
+   "qid": "Q46",
+   "page": 151,
+   "correct": "D",
+   "enonce": "Le jour du départ d’un salarié, quelle est la première action sur ses droits d’accès ?",
+   "opts": [
+    "Attendre la fin du mois pour grouper les départs",
+    "Donner ses droits à un collègue",
+    "Changer son mot de passe et le garder actif",
+    "Désactiver son compte"
+   ],
+   "expl": [
+    "Faux : pendant ce délai, le compte reste exploitable.",
+    "Faux : c’est la porte ouverte à l’accumulation et à la perte de traçabilité.",
+    "Faux : un compte actif reste un risque.",
+    "On coupe l’accès immédiatement ; la suppression et l’archivage viennent plus tard."
+   ],
+   "part": "PARTIE 8 · MISE EN PRATIQUE ET SYNTHÈSE",
+   "retenir": "Départ : désactiver le jour même.",
+   "but": "Fixer la bonne réaction face à un départ.",
+   "sondage": false,
+   "source": "production de l’auteur",
+   "cyber": ""
+  },
+  {
+   "n": 47,
+   "qid": "Q47",
+   "page": 154,
+   "multi": true,
+   "nrep": 5,
+   "situation": "Extrait de l’audit TransLor : 1. Karim (intérimaire, parti il y a 2 mois) : compte actif, rôle Conducteur. 2. Sonia : rôles Comptable et Responsable d’exploitation. 3. Compte « admin_tms » partagé par 3 informaticiens, mot de passe commun. 4. Dossier « RH » : groupe « Tout le monde » en lecture. 5. Marc, gestionnaire : accès aux tarifs, nécessaire à son travail.",
+   "consigne": "Pour chacune des 5 lignes, choisissez le verdict et le principe violé (une lettre) : 1 point par ligne correcte.",
+   "exemple": "",
+   "items": [
+    "Ligne 1 (Karim, parti il y a 2 mois, compte actif) : A) conforme · B) anomalie : compte orphelin, cycle de vie non respecté · C) anomalie : compte partagé · D) anomalie : accès trop large",
+    "Ligne 2 (Sonia : Comptable et Responsable d’exploitation) : A) anomalie : cumul de rôles incompatibles, séparation des tâches violée · B) conforme · C) anomalie : compte orphelin · D) anomalie : héritage de rôle",
+    "Ligne 3 (admin_tms partagé par 3 informaticiens) : A) conforme · B) anomalie : cumul de rôles · C) anomalie : compte partagé, perte d’imputabilité · D) anomalie : compte orphelin",
+    "Ligne 4 (dossier « RH » lisible par « Tout le monde ») : A) conforme · B) anomalie : sur-exposition de données RH, à restreindre au rôle RH · C) anomalie : compte orphelin · D) anomalie : compte partagé",
+    "Ligne 5 (Marc, gestionnaire, accède aux tarifs) : A) anomalie : trop de droits · B) anomalie : compte partagé · C) conforme : accès justifié par la fonction · D) anomalie : compte orphelin"
+   ],
+   "rows": [
+    [
+     "1. Karim : B",
+     "Anomalie : compte orphelin, cycle de vie non respecté. Désactiver."
+    ],
+    [
+     "2. Sonia : A",
+     "Anomalie : cumul de rôles incompatibles, violation de la séparation des tâches et du moindre privilège. Séparer."
+    ],
+    [
+     "3. admin_tms : C",
+     "Anomalie : compte partagé, perte d’imputabilité. Comptes nominatifs."
+    ],
+    [
+     "4. Dossier RH : B",
+     "Anomalie : sur-exposition de données RH. Restreindre au rôle RH."
+    ],
+    [
+     "5. Marc : C",
+     "Conforme : accès justifié par la fonction."
+    ],
+    [
+     "Priorités",
+     "1) Lignes 4 et 3 : exposition massive et absence de traçabilité, correction immédiate. 2) Ligne 1 : désactivation le jour même. 3) Ligne 2 : séparer les rôles et revue trimestrielle."
+    ]
+   ],
+   "table": null,
+   "part": "PARTIE 8 · MISE EN PRATIQUE ET SYNTHÈSE",
+   "retenir": "Bilan : 4 anomalies sur 5 lignes ; seule la ligne 5 est conforme. Priorité au risque le plus élevé.",
+   "but": "Comparer droits réels et droits nécessaires, puis prioriser.",
+   "source": "production de l’auteur",
+   "cyber": ""
+  },
+  {
+   "n": 48,
+   "qid": "Q48",
+   "page": 156,
+   "correct": "A",
+   "enonce": "Trois administrateurs utilisent un même compte « admin » avec le même mot de passe. Quel principe est le plus directement violé ?",
+   "opts": [
+    "L’imputabilité : on ne sait plus qui a fait quoi",
+    "Le moindre privilège : le compte « admin » a plus de droits que nécessaire",
+    "La séparation des tâches : les trois administrateurs peuvent tout faire seuls",
+    "La confidentialité : les trois administrateurs connaissent le même mot de passe"
+   ],
+   "expl": [
+    "Un compte partagé empêche d’attribuer une action à une personne : les journaux ne servent plus de preuve.",
+    "C’est souvent vrai aussi, mais le défaut le plus direct d’un compte partagé est de rendre les actions anonymes.",
+    "Autre faute possible ; mais ici, le point le plus direct est qu’on ne peut pas distinguer les personnes.",
+    "Le mot de passe partagé est le symptôme ; le principe violé est de ne pas pouvoir attribuer les actions."
+   ],
+   "part": "PARTIE 8 · MISE EN PRATIQUE ET SYNTHÈSE",
+   "retenir": "Un compte = une personne.",
+   "but": "Relier un défaut courant au principe violé.",
+   "sondage": false,
+   "source": "production de l’auteur",
+   "cyber": ""
+  },
+  {
+   "n": 49,
+   "qid": "Q49",
+   "page": 158,
+   "multi": true,
+   "nrep": 4,
+   "situation": "Une PME de logistique de 40 personnes (fictive, proche de TransLor) veut sécuriser ses accès. Données sensibles : tarifs, RIB, fiches de paie. Risques : fraude au RIB, comptes d’anciens salariés encore actifs, partages trop ouverts. Deux informaticiens, budget limité.",
+   "consigne": "Pour chacune des 4 demandes, choisissez la meilleure réponse (une lettre) : 1 point par demande correcte.",
+   "exemple": "",
+   "items": [
+    "Quel modèle principal pour les droits courants ? A) MAC à niveaux · B) un rôle pour chaque salarié · C) RBAC avec peu de rôles stables · D) DAC pur",
+    "Quel modèle complémentaire pour la paie et les paiements ? A) ABAC (appareil, heure, âge du RIB) · B) Bell-LaPadula · C) OrBAC · D) Biba",
+    "Quelle est la mesure à prioriser en premier ? A) installer un moteur de politiques ABAC · B) désactiver les comptes d’anciens salariés et fixer un processus de départ · C) rédiger 50 rôles · D) chiffrer tous les postes",
+    "Quel indicateur de suivi est le plus pertinent ? A) nombre de rôles créés · B) nombre de comptes actifs d’anciens salariés (cible 0) · C) nombre de partages · D) durée des réunions"
+   ],
+   "rows": [
+    [
+     "1. Modèle principal : C",
+     "RBAC avec peu de rôles stables : fonctions stables, administration centralisée. B revient à de la gestion individuelle ; A et D ne correspondent pas au besoin."
+    ],
+    [
+     "2. Modèle complémentaire : A",
+     "ABAC pour les décisions dépendant du contexte (appareil, heure, âge du RIB). B et D sont des modèles de niveaux ; C est un modèle de recherche."
+    ],
+    [
+     "3. Première mesure : B",
+     "Désactiver les comptes orphelins et fixer un processus de départ : gain immédiat, coût faible. A est trop lourd, C est une explosion de rôles, D ne traite pas le risque."
+    ],
+    [
+     "4. Indicateur : B",
+     "Comptes actifs d’anciens salariés, cible 0 : mesurable et lié au risque. A, C et D mesurent de l’activité, pas du risque."
+    ]
+   ],
+   "table": null,
+   "part": "PARTIE 8 · MISE EN PRATIQUE ET SYNTHÈSE",
+   "retenir": "Une bonne décision part du risque, choisit un modèle simple, et se mesure par un indicateur vérifiable.",
+   "but": "Transformer le cours en décision utile en entreprise.",
+   "source": "production de l’auteur",
+   "cyber": "Un compte d’ancien salarié actif est la porte d’entrée la plus simple pour un attaquant : on mesure ce qui réduit l’exposition, pas ce qui est le plus sophistiqué."
+  },
+  {
+   "n": 50,
+   "qid": "Q50",
+   "page": 162,
+   "correct": "C",
+   "enonce": "Un fichier a les permissions rwxr-x---. Qui peut le modifier ?",
+   "opts": [
+    "Le propriétaire et son groupe",
+    "Tout le monde",
+    "Seulement son propriétaire",
+    "Personne, un fichier exécutable est en lecture seule"
+   ],
+   "expl": [
+    "Faux : le groupe n’a pas le bit w.",
+    "Faux : les autres n’ont aucun droit.",
+    "Le propriétaire a rwx (écriture comprise). Le groupe a r-x (pas d’écriture), les autres n’ont rien.",
+    "Faux : le bit x n’empêche pas l’écriture."
+   ],
+   "part": "MODULE D · MISE EN ŒUVRE TECHNIQUE",
+   "retenir": "Lire la lettre w de chaque bloc.",
+   "but": "Lire des permissions Unix.",
+   "sondage": false,
+   "source": "Pages de manuel Linux (chmod, umask) ⚠ (selon la distribution) ; Documentation Microsoft Active Directory (groupes AGDLP) ⚠ (selon la version)",
+   "cyber": ""
+  },
+  {
+   "n": 51,
+   "qid": "Q51",
+   "page": 164,
+   "multi": true,
+   "nrep": 4,
+   "situation": "Sur le serveur de fichiers de TransLor : ‑rw‑r‑‑‑‑‑ marc exploit tarifs.csv ; drwxrwx‑‑‑ sonia compta factures/ ; ‑rwxr‑xr‑x root root sauvegarde.sh ; ‑rw‑rw‑rw‑ paul rh salaires.xlsx. Personnes : Marc (propriétaire de tarifs.csv), Léa (groupe exploit), Karim (aucun de ces groupes).",
+   "consigne": "Pour chacune des 4 demandes ci-dessous, donnez votre réponse : 1 point par réponse exacte.",
+   "exemple": "",
+   "items": [
+    "Pour chaque ligne, indiquez ce que peuvent faire Marc, Léa et Karim.",
+    "Quelle ligne est une anomalie ? Quel principe est violé ?",
+    "Donnez la valeur octale de chaque ligne et proposez une valeur corrigée.",
+    "Pourquoi ce système est-il un DAC ?"
+   ],
+   "rows": [
+    [
+     "tarifs.csv : rw-r-----",
+     "Propriétaire (Marc) : lire et écrire. Groupe exploit (Léa) : lire. Autres (Karim) : rien. Octal 640."
+    ],
+    [
+     "factures/ : rwxrwx---",
+     "Sonia : tout. Groupe compta : tout. Autres (Marc, Léa, Karim s’ils ne sont pas dans compta) : rien. Octal 770."
+    ],
+    [
+     "sauvegarde.sh : rwxr-xr-x",
+     "Root : tout. Groupe et autres (Marc, Léa, Karim) : lire et exécuter, pas modifier. Octal 755."
+    ],
+    [
+     "salaires.xlsx : rw-rw-rw-",
+     "Tout le monde peut lire ET modifier : ANOMALIE (confidentialité et intégrité). Octal 666 ; valeur corrigée : 660 (RH) ou 640. Principe : moindre privilège."
+    ],
+    [
+     "Pourquoi un DAC ?",
+     "Le propriétaire (ou root) décide des bits de permission : discrétion du propriétaire."
+    ]
+   ],
+   "table": null,
+   "part": "MODULE D · MISE EN ŒUVRE TECHNIQUE",
+   "retenir": "Octal : 640, 770, 755, 666. Une seule anomalie majeure : 666 sur un fichier de paie. Corriger en 660 ou 640.",
+   "but": "Passer de la notation à la décision, et repérer un droit trop large.",
+   "source": "Pages de manuel Linux (chmod, umask) ⚠ (selon la distribution) ; Documentation Microsoft Active Directory (groupes AGDLP) ⚠ (selon la version)",
+   "cyber": ""
+  },
+  {
+   "n": 52,
+   "qid": "Q52",
+   "page": 167,
+   "correct": "A",
+   "enonce": "Un nouveau magasinier arrive. Dans la méthode AGDLP, que fait-on pour lui donner les droits du magasin ?",
+   "opts": [
+    "On ajoute son compte au groupe global « Magasin »",
+    "On modifie l’ACL de chaque dossier du magasin pour y ajouter son compte",
+    "On lui donne le mot de passe d’un collègue",
+    "On le place dans le groupe « Administrateurs »"
+   ],
+   "expl": [
+    "Le groupe global est déjà placé dans les groupes locaux de ressources : une seule opération suffit.",
+    "Faux : cela revient à du DAC pur, avec autant d’opérations que de dossiers.",
+    "Faux : cela détruit l’imputabilité.",
+    "Faux : c’est un privilège excessif."
+   ],
+   "part": "MODULE D · MISE EN ŒUVRE TECHNIQUE",
+   "retenir": "Un compte dans un groupe global : le reste est déjà fait.",
+   "but": "Mesurer le gain d’AGDLP.",
+   "sondage": false,
+   "source": "Pages de manuel Linux (chmod, umask) ⚠ (selon la distribution) ; Documentation Microsoft Active Directory (groupes AGDLP) ⚠ (selon la version)",
+   "cyber": ""
+  },
+  {
+   "n": 53,
+   "qid": "Q53",
+   "page": 169,
+   "multi": true,
+   "nrep": 4,
+   "situation": "TransLor a 3 services : Compta (6 personnes), RH (3), Exploitation (15). Quatre partages : Factures (Compta modifie), DossiersRH (RH modifie), Planning (Exploitation modifie), Procédures (les trois services lisent).",
+   "consigne": "Pour chacune des 4 demandes, choisissez la bonne réponse (une lettre ou le nombre) : 1 point par demande correcte.",
+   "exemple": "",
+   "items": [
+    "Quelle chaîne AGDLP est correcte pour le partage Factures ? A) comptes → GG_Compta → DL_Factures_Modif → Modifier sur Factures · B) comptes → DL_Factures_Modif → GG_Compta → Modifier sur Factures · C) comptes → Modifier sur Factures · D) GG_Compta → comptes → DL_Factures_Modif",
+    "Combien de groupes faut-il au total pour les quatre partages ? 1) 3 globaux et 4 locaux : 7 · 2) 4 · 3) 12 · 4) 24",
+    "Combien d’imbrications (groupe global dans groupe local) ? 1) 3 · 2) 6 · 3) 9 · 4) 12",
+    "Un nouveau comptable arrive : combien d’opérations avec AGDLP ? 1) 1 · 2) 2 · 3) 4 · 4) 8"
+   ],
+   "rows": [
+    [
+     "1. La chaîne : A",
+     "A : comptes des 6 comptables → G : GG_Compta → DL : DL_Factures_Modif → P : Modifier. B inverse G et DL ; C saute les groupes ; D inverse les premiers maillons."
+    ],
+    [
+     "2. Les groupes : 1 (7 groupes)",
+     "Globaux : 3 (GG_Compta, GG_RH, GG_Exploitation). Locaux : 4 (un par partage et par niveau de droit). Total : 7."
+    ],
+    [
+     "3. Les imbrications : 2 (6)",
+     "3 globaux dans leur partage de modification, plus 3 globaux dans DL_Procedures_Lecture : 6."
+    ],
+    [
+     "4. Nouveau comptable : 1",
+     "Avec AGDLP : 1 opération (ajouter le compte à GG_Compta). Sans AGDLP : 2 opérations (ACL de Factures et de Procédures), et chaque nouveau partage en ajoute une."
+    ]
+   ],
+   "table": null,
+   "part": "MODULE D · MISE EN ŒUVRE TECHNIQUE",
+   "retenir": "Chiffres clés : 7 groupes, 6 imbrications, 1 opération contre 2. Plus l’entreprise grandit, plus l’écart augmente.",
+   "but": "Reconnaître une chaîne AGDLP et mesurer sa simplicité.",
+   "source": "Documentation Microsoft Active Directory (groupes AGDLP) ⚠ (selon la version)",
+   "cyber": "AGDLP empêche d’inscrire des comptes directement dans les ACL : un nouveau droit passe par un groupe visible et auditable. Faute évitée : des permissions individuelles que personne ne retrouve."
+  },
+  {
+   "n": 54,
+   "qid": "Q54",
+   "page": 171,
+   "correct": "B",
+   "enonce": "Sur Linux, quel mécanisme met en œuvre un contrôle obligatoire, indépendant des permissions rwx du propriétaire ?",
+   "opts": [
+    "Les permissions rwx et la commande chmod, réglées par le propriétaire du fichier",
+    "SELinux (ou AppArmor), modules du noyau qui appliquent une politique que le propriétaire ne peut pas modifier",
+    "Les groupes Unix et la commande usermod, qui gèrent les appartenances",
+    "Le pare-feu du serveur, qui filtre les connexions réseau entrantes"
+   ],
+   "expl": [
+    "Faux : ce sont les contrôles discrétionnaires : le propriétaire les modifie.",
+    "Ces modules du noyau appliquent une politique imposée, que le propriétaire d’un fichier ne peut pas modifier.",
+    "Faux : ils prolongent les permissions classiques, toujours à la main du propriétaire ou de l’administrateur.",
+    "Faux : il filtre le réseau, il ne contrôle pas l’accès d’un processus aux fichiers."
+   ],
+   "part": "MODULE D · MISE EN ŒUVRE TECHNIQUE",
+   "retenir": "chmod = DAC ; SELinux = MAC.",
+   "but": "Relier MAC et mise en œuvre Linux.",
+   "sondage": false,
+   "source": "Pages de manuel Linux (chmod, umask) ⚠ (selon la distribution) ; Documentation Microsoft Active Directory (groupes AGDLP) ⚠ (selon la version)",
+   "cyber": ""
+  },
+  {
+   "n": 55,
+   "qid": "Q55",
+   "page": 177,
+   "correct": "D",
+   "enonce": "Une entreprise impose que celui qui saisit une dépense ne soit pas celui qui la valide. À quelle mesure de l’annexe A d’ISO/IEC 27001:2022 cela correspond-il ?",
+   "opts": [
+    "8.2 · Droits d’accès privilégiés",
+    "5.16 · Gestion des identités",
+    "8.3 · Restriction d’accès à l’information",
+    "5.3 · Séparation des tâches"
+   ],
+   "expl": [
+    "Faux : elle concerne les comptes administrateurs.",
+    "Faux : elle concerne la création et le suivi des identités.",
+    "Faux : elle concerne la limitation d’accès aux informations.",
+    "Cette mesure vise exactement à éviter qu’une seule personne cumule des fonctions conflictuelles."
+   ],
+   "part": "MODULE E · CONFORMITÉ ET GOUVERNANCE",
+   "retenir": "Initier ≠ valider : mesure 5.3.",
+   "but": "Relier une pratique à une mesure de la norme.",
+   "sondage": false,
+   "source": "ISO/IEC 27001:2022, Annexe A ⚠ (à vérifier sur le texte officiel) ; Directive (UE) 2022/2555 (NIS2), article 21 ⚠ (transposition française à vérifier) ; Pratiques de gestion des accès à privilèges ; ISO/IEC 27001:2022, mesure 8.2 ⚠",
+   "cyber": ""
+  },
+  {
+   "n": 56,
+   "qid": "Q56",
+   "page": 179,
+   "multi": true,
+   "nrep": 5,
+   "situation": "Cinq pratiques de TransLor : (a) revue annuelle des droits par les managers ; (b) comptes administrateurs nominatifs et limités ; (c) règle « initier ≠ valider » pour les paiements ; (d) politique de contrôle d’accès rédigée et approuvée ; (e) restriction du dossier RH au seul rôle RH. Mesures ISO/IEC 27001:2022 : 5.3 séparation des tâches · 5.15 contrôle d’accès · 5.18 droits d’accès · 8.2 droits d’accès privilégiés · 8.3 restriction d’accès à l’information.",
+   "consigne": "Pour chacune des 5 demandes, choisissez la mesure qui correspond à la pratique : 1 point par demande correcte.",
+   "exemple": "",
+   "items": [
+    "(a) Revue annuelle des droits par les managers → 1) 5.15 · 2) 5.18 · 3) 8.3 · 4) 5.3",
+    "(b) Comptes administrateurs nominatifs et limités → 1) 5.3 · 2) 5.18 · 3) 8.2 · 4) 8.3",
+    "(c) Règle « initier ≠ valider » → 1) 8.2 · 2) 5.15 · 3) 8.3 · 4) 5.3",
+    "(d) Politique de contrôle d’accès rédigée et approuvée → 1) 5.15 · 2) 5.18 · 3) 8.2 · 4) 5.3",
+    "(e) Restriction du dossier RH au seul rôle RH → 1) 5.3 · 2) 8.3 · 3) 5.18 · 4) 8.2"
+   ],
+   "rows": [
+    [
+     "(a) Revue des droits : 5.18",
+     "Mesure 5.18 (droits d’accès). Preuve : comptes rendus de revue signés, liste des retraits."
+    ],
+    [
+     "(b) Administrateurs nominatifs : 8.2",
+     "Mesure 8.2 (droits d’accès privilégiés). Preuve : liste des comptes à privilèges et de leurs titulaires."
+    ],
+    [
+     "(c) Initier ≠ valider : 5.3",
+     "Mesure 5.3 (séparation des tâches). Preuve : matrice de rôles incompatibles, journal des validations."
+    ],
+    [
+     "(d) Politique approuvée : 5.15",
+     "Mesure 5.15 (contrôle d’accès). Preuve : document daté, approuvé et diffusé."
+    ],
+    [
+     "(e) Dossier RH restreint : 8.3",
+     "Mesure 8.3 (restriction d’accès à l’information). Preuve : ACL du dossier, revue."
+    ],
+    [
+     "Pour la discussion : NIS2",
+     "Article 21, paragraphe 2, point i (politiques de contrôle d’accès). TransLor (transport, taille moyenne) est potentiellement concernée ⚠ : vérifier le périmètre dans la transposition française."
+    ]
+   ],
+   "table": null,
+   "part": "MODULE E · CONFORMITÉ ET GOUVERNANCE",
+   "retenir": "Pratique, mesure, preuve : voilà le triptyque d’un audit. Les références doivent être vérifiées sur les textes officiels.",
+   "but": "Savoir répondre à un auditeur : pratique, mesure, preuve.",
+   "source": "ISO/IEC 27001:2022, Annexe A ⚠ (à vérifier sur le texte officiel) ; Directive (UE) 2022/2555 (NIS2), article 21 ⚠ (transposition française à vérifier)",
+   "cyber": "Chaque mesure répond à une faute : revue (comptes oubliés), administrateurs nominatifs (impossible de savoir qui a agi), SoD (fraude à une main). Faute évitée : une pratique sans mesure ni preuve."
+  },
+  {
+   "n": 57,
+   "qid": "Q57",
+   "page": 181,
+   "correct": "C",
+   "enonce": "Un administrateur n’obtient ses droits élevés que pour 2 heures, avec une justification, puis ils disparaissent. De quelle pratique s’agit-il ?",
+   "opts": [
+    "La séparation des tâches : deux administrateurs valident chacun une partie de l’opération",
+    "Le DAC pur : l’administrateur décide lui-même de ses droits et de leur durée",
+    "Le Just-in-Time, dans une démarche PAM",
+    "Le moindre privilège permanent : le compte garde le minimum de droits en continu"
+   ],
+   "expl": [
+    "Elle sépare des fonctions ; elle ne limite pas la durée.",
+    "Faux : ici l’organisation impose la durée, pas le propriétaire.",
+    "Réduire la durée des droits élevés réduit la fenêtre d’exposition.",
+    "Ce principe fixe l’étendue des droits ; il ne décrit pas leur disparition automatique après 2 heures."
+   ],
+   "part": "MODULE E · CONFORMITÉ ET GOUVERNANCE",
+   "retenir": "Droits élevés = courts et justifiés.",
+   "but": "Reconnaître le Just-in-Time.",
+   "sondage": false,
+   "source": "ISO/IEC 27001:2022, Annexe A ⚠ (à vérifier sur le texte officiel) ; Directive (UE) 2022/2555 (NIS2), article 21 ⚠ (transposition française à vérifier) ; Pratiques de gestion des accès à privilèges ; ISO/IEC 27001:2022, mesure 8.2 ⚠",
+   "cyber": ""
+  },
+  {
+   "n": 58,
+   "qid": "Q58",
+   "page": 183,
+   "multi": true,
+   "nrep": 4,
+   "situation": "Les 2 informaticiens de TransLor partagent un compte « admin_tms », actif 24 h sur 24 toute l’année (8 760 heures par an). Une revue montre qu’ils ont réellement besoin de droits élevés pour 2 interventions d’1 heure par semaine.",
+   "consigne": "Pour chacune des 4 demandes, choisissez la bonne réponse (une lettre ou le nombre) : 1 point par demande correcte.",
+   "exemple": "",
+   "items": [
+    "Quel est le principal problème du compte partagé ? A) la perte d’imputabilité : on ne sait pas qui a fait quoi · B) le mot de passe est trop court · C) le compte coûte une licence · D) il est lent",
+    "Quelle mesure PAM convient à une équipe de 2 personnes ? A) un deuxième compte partagé · B) des comptes nominatifs avec droits élevés à la demande, justifiés et limités dans le temps · C) un compte administrateur par service · D) supprimer l’administration",
+    "Combien d’heures par an de droits élevés avec la mesure (2 × 1 h × 52 semaines) ? 1) 52 · 2) 104 · 3) 8 760 · 4) 208",
+    "Si le Just-in-Time est impossible, quel contrôle compensatoire ? A) augmenter la taille des mots de passe · B) autoriser le partage du compte · C) journaliser les sessions administrateur avec une revue hebdomadaire par la direction · D) désactiver le journal"
+   ],
+   "rows": [
+    [
+     "1. Problème : A",
+     "La perte d’imputabilité : plusieurs personnes (et d’anciens) connaissent le mot de passe, donc impossible de savoir qui a agi. B, C et D sont secondaires."
+    ],
+    [
+     "2. Mesure : B",
+     "Comptes nominatifs et droits élevés à la demande : peu coûteux pour 2 personnes. A aggrave le défaut, C et D ne conviennent pas."
+    ],
+    [
+     "3. Calcul : 2 (104 h)",
+     "2 × 1 h × 52 = 104 h par an, contre 8 760 h : 104 / 8 760 ≈ 1,2 % (réduction d’environ 98,8 %). 52 oublie le facteur 2 ; 208 en ajoute un."
+    ],
+    [
+     "4. Compensation : C",
+     "Journaliser les sessions administrateur avec revue hebdomadaire : on ne réduit pas l’exposition, on la rend visible."
+    ]
+   ],
+   "table": null,
+   "part": "MODULE E · CONFORMITÉ ET GOUVERNANCE",
+   "retenir": "Chiffres clés : 104 h au lieu de 8 760 h par an, soit environ 98,8 % de réduction. Des comptes nominatifs sont le premier pas.",
+   "but": "Mesurer le gain du Just-in-Time et choisir des mesures réalistes.",
+   "source": "Pratiques de gestion des accès à privilèges ; ISO/IEC 27001:2022, mesure 8.2 ⚠",
+   "cyber": "Un compte administrateur partagé et permanent est la cible idéale : s’il est volé, l’attaquant a tout, sans trace nominative. Faute évitée : des droits élevés permanents et anonymes."
+  },
+  {
+   "n": 59,
+   "qid": "Q59",
+   "page": 185,
+   "correct": "D",
+   "enonce": "Lors d’un audit, une entreprise affirme faire une revue annuelle des droits. Quelle est la meilleure preuve ?",
+   "opts": [
+    "Une déclaration du responsable, confirmée par deux collègues présents à la revue",
+    "La politique de contrôle d’accès approuvée par la direction il y a deux ans",
+    "La liste complète des comptes actifs exportée le jour de l’audit",
+    "Un compte rendu daté et signé de la revue, avec la liste des droits retirés et le nom du valideur"
+   ],
+   "expl": [
+    "Faux : des témoignages ne remplacent pas une trace écrite datée.",
+    "Faux : elle décrit une règle, pas son application effective.",
+    "Elle montre l’état du jour, pas qu’une revue a eu lieu ni ce qu’elle a retiré.",
+    "Une preuve datée et traçable montre que la revue a eu lieu et qu’elle a produit des actions."
+   ],
+   "part": "MODULE E · CONFORMITÉ ET GOUVERNANCE",
+   "retenir": "Pas de preuve, pas de conformité.",
+   "but": "Reconnaître une preuve utile en audit.",
+   "sondage": false,
+   "source": "ISO/IEC 27001:2022, Annexe A ⚠ (à vérifier sur le texte officiel) ; Directive (UE) 2022/2555 (NIS2), article 21 ⚠ (transposition française à vérifier) ; Pratiques de gestion des accès à privilèges ; ISO/IEC 27001:2022, mesure 8.2 ⚠",
+   "cyber": ""
+  },
+  {
+   "n": 60,
+   "qid": "Q60",
+   "page": 189,
+   "correct": "A",
+   "enonce": "Relations : Nadia est membre du groupe « Achats » ; le groupe « Achats » est lecteur du dossier « Contrats » ; « Contrats 2026 » a pour parent « Contrats » (le lecteur d’un parent est lecteur de l’enfant). Nadia peut-elle lire « Contrats 2026 » ?",
+   "opts": [
+    "Oui : par l’appartenance au groupe, puis par l’héritage du parent",
+    "Non : aucun droit n’est écrit directement pour Nadia sur ce dossier",
+    "Non : le groupe Achats n’a de droit que sur le dossier « Contrats » lui-même",
+    "Oui, mais seulement si Nadia est aussi propriétaire du dossier « Contrats 2026 »"
+   ],
+   "expl": [
+    "Nadia → groupe Achats → lecteur de Contrats → parent de Contrats 2026 : le chemin existe.",
+    "Faux : en ReBAC, le droit se déduit des relations, il n’a pas à être écrit pour elle.",
+    "Faux : le droit sur le parent descend vers l’enfant grâce à la règle d’héritage.",
+    "Faux : la propriété n’est pas nécessaire ici."
+   ],
+   "part": "MODULE B · EXTENSION",
+   "retenir": "Droit = chemin de relations existant.",
+   "but": "Parcourir un chemin de relations.",
+   "sondage": false,
+   "source": "R. Pang et al., « Zanzibar: Google’s Consistent, Global Authorization System », USENIX ATC 2019 ⚠ (à vérifier)",
+   "cyber": ""
+  },
+  {
+   "n": 61,
+   "qid": "Q61",
+   "page": 191,
+   "correct": "B",
+   "enonce": "Dans quel cas ReBAC est-il particulièrement adapté ?",
+   "opts": [
+    "Un petit serveur de fichiers de 5 utilisateurs sans dossiers imbriqués",
+    "Un outil de partage où dossiers, sous-dossiers et groupes sont imbriqués",
+    "Un accès réservé aux heures ouvrées depuis un poste géré, quel que soit le dossier",
+    "Un registre comptable qui doit rester inchangé hors des procédures certifiées"
+   ],
+   "expl": [
+    "Faux : des droits Unix simples suffisent.",
+    "Les droits dépendent des liens entre entités : c’est le cas typique.",
+    "Faux : ce sont des attributs de contexte, donc ABAC.",
+    "Faux : c’est un besoin d’intégrité (Biba, Clark-Wilson)."
+   ],
+   "part": "MODULE B · EXTENSION",
+   "retenir": "ReBAC : relations et héritage.",
+   "but": "Situer ReBAC par rapport aux autres modèles.",
+   "sondage": false,
+   "source": "R. Pang et al., « Zanzibar: Google’s Consistent, Global Authorization System », USENIX ATC 2019 ⚠ (à vérifier)",
+   "cyber": ""
+  },
+  {
+   "n": 62,
+   "qid": "Q62",
+   "page": 193,
+   "multi": true,
+   "nrep": 4,
+   "situation": "Relations de TransLor : dossier:Tarifs # propriétaire @ marc ; dossier:Tarifs # lecteur @ groupe:compta ; groupe:compta # membre @ sonia ; dossier:Tarifs2026 # parent @ dossier:Tarifs. Règle : le lecteur d’un dossier est lecteur de ses enfants.",
+   "consigne": "Pour chacune des 4 demandes ci-dessous, donnez votre réponse : 1 point par réponse exacte.",
+   "exemple": "",
+   "items": [
+    "Sonia peut-elle lire Tarifs2026 ? Montrez le chemin.",
+    "Karim (membre d’aucun groupe) peut-il lire Tarifs ?",
+    "Marc retire Sonia du groupe compta : que devient son droit ?",
+    "Quel avantage par rapport à un RBAC pour des dossiers imbriqués ? A) les droits sont plus longs à écrire · B) il faut créer un rôle par dossier · C) un seul changement de relation se répercute sur tous les sous-dossiers · D) il n’y a plus de journal"
+   ],
+   "rows": [
+    [
+     "1. Sonia et Tarifs2026",
+     "Oui. Chemin : sonia est membre de groupe:compta ; groupe:compta est lecteur de Tarifs ; Tarifs2026 a pour parent Tarifs ; la règle d’héritage donne le droit de lecture."
+    ],
+    [
+     "2. Karim et Tarifs",
+     "Non : aucune relation ne relie Karim à Tarifs."
+    ],
+    [
+     "3. Retrait de Sonia",
+     "Le chemin est rompu : Sonia perd le droit sur Tarifs et sur Tarifs2026 en une seule opération."
+    ],
+    [
+     "4. L’avantage : C",
+     "Un seul changement (la relation) se répercute partout sur les sous-dossiers ; pas besoin de créer un rôle par dossier, donc pas d’explosion de rôles."
+    ]
+   ],
+   "table": null,
+   "part": "MODULE B · EXTENSION",
+   "retenir": "Un chemin de relations donne un droit ; casser un maillon retire le droit partout en aval.",
+   "but": "Déduire les droits à partir des relations, pas des listes.",
+   "source": "R. Pang et al., « Zanzibar: Google’s Consistent, Global Authorization System », USENIX ATC 2019 ⚠ (à vérifier)",
+   "cyber": ""
+  },
+  {
+   "n": 63,
+   "qid": "Q63",
+   "page": 197,
+   "correct": "A",
+   "enonce": "Une entreprise donne accès à tous ses serveurs dès qu’un employé est connecté au VPN. Quel principe du Zero Trust cela contredit-il ?",
+   "opts": [
+    "La vérification explicite de chaque accès, selon le contexte",
+    "Le chiffrement des communications : le VPN ne chiffre pas assez le trafic",
+    "La journalisation : le VPN n’enregistre aucune connexion",
+    "La disponibilité : le VPN devient un point de défaillance unique"
+   ],
+   "expl": [
+    "Le VPN donne une confiance implicite liée à l’emplacement réseau : exactement ce que le Zero Trust refuse.",
+    "Faux : le VPN chiffre bien ; le défaut est la confiance accordée ensuite, pas le chiffrement.",
+    "Faux : les connexions VPN peuvent être journalisées ; le défaut visé est la confiance implicite.",
+    "Vrai en pratique, mais ce n’est pas un principe du Zero Trust."
+   ],
+   "part": "MODULE C · EXTENSION",
+   "retenir": "Le réseau interne ne vaut pas confiance.",
+   "but": "Repérer la confiance implicite.",
+   "sondage": false,
+   "source": "NIST SP 800-207, « Zero Trust Architecture », août 2020 ⚠ (à vérifier)",
+   "cyber": ""
+  },
+  {
+   "n": 64,
+   "qid": "Q64",
+   "page": 199,
+   "correct": "D",
+   "enonce": "Que signifie « supposer la compromission » dans une démarche Zero Trust ?",
+   "opts": [
+    "Imposer le changement de tous les mots de passe de l’entreprise chaque semaine",
+    "Refuser l’accès à tous les salariés tant qu’un incident n’a pas été exclu",
+    "Reporter la journalisation tant qu’aucune attaque n’est détectée, pour économiser du stockage",
+    "Concevoir la sécurité comme si un attaquant était déjà dans le réseau"
+   ],
+   "expl": [
+    "Faux : ce n’est pas la définition ; cela ne limite pas ce qu’un attaquant déjà présent peut faire.",
+    "Faux : on évalue chaque accès, on ne les bloque pas tous.",
+    "Faux : la journalisation est au contraire essentielle pour détecter.",
+    "D’où la segmentation, la journalisation et la détection : on limite ce qu’il peut faire."
+   ],
+   "part": "MODULE C · EXTENSION",
+   "retenir": "Segmenter, journaliser, détecter.",
+   "but": "Comprendre la posture du Zero Trust.",
+   "sondage": false,
+   "source": "NIST SP 800-207, « Zero Trust Architecture », août 2020 ⚠ (à vérifier)",
+   "cyber": ""
+  },
+  {
+   "n": 65,
+   "qid": "Q65",
+   "page": 201,
+   "multi": true,
+   "nrep": 4,
+   "situation": "TransLor évalue chaque accès avec un score (pondérations inventées pour le cours) : appareil géré +2 ; authentification multifacteur réussie +2 ; lieu habituel +1 ; heure habituelle +1. Seuils : ressource Interne ≥ 3 ; ressource Confidentiel ≥ 5. Requêtes : 1. Marc, PC géré, multifacteur, bureau, 10 h. 2. Marc, PC personnel, multifacteur, domicile, 14 h (heure habituelle). 3. Léa, PC géré, sans multifacteur, bureau, 6 h. 4. Karim, PC géré, sans multifacteur, étranger, 3 h.",
+   "consigne": "Pour chacune des 4 demandes ci-dessous, donnez votre réponse : 1 point par réponse exacte.",
+   "exemple": "",
+   "items": [
+    "Calculez le score de chaque requête.",
+    "Décidez pour une ressource Interne (planning) puis Confidentiel (contrats).",
+    "Quel composant ABAC calcule le score, lequel applique la décision ?",
+    "Quel défaut du modèle « le VPN ouvre tout » ce système corrige-t-il ?"
+   ],
+   "rows": [
+    [
+     "1. Marc, bureau",
+     "Appareil géré 2 + multifacteur 2 + lieu 1 + heure 1 = 6. Interne (≥ 3) : PERMIS. Confidentiel (≥ 5) : PERMIS."
+    ],
+    [
+     "2. Marc, domicile, PC perso",
+     "Appareil 0 + multifacteur 2 + lieu 0 + heure 1 = 3. Interne : PERMIS. Confidentiel : REFUSÉ (3 < 5)."
+    ],
+    [
+     "3. Léa, 6 h, sans multifacteur",
+     "Appareil 2 + multifacteur 0 + lieu 1 + heure 0 = 3. Interne : PERMIS. Confidentiel : REFUSÉ."
+    ],
+    [
+     "4. Karim, étranger, 3 h",
+     "Appareil 2 + 0 + 0 + 0 = 2. Interne : REFUSÉ (2 < 3). Confidentiel : REFUSÉ."
+    ],
+    [
+     "Composants",
+     "Le PDP calcule le score à partir des attributs fournis par le PIP ; le PEP applique la décision."
+    ],
+    [
+     "Le défaut corrigé",
+     "La confiance implicite du VPN : une fois dedans, plus aucun contrôle. Ici chaque accès est évalué."
+    ]
+   ],
+   "table": null,
+   "part": "MODULE C · EXTENSION",
+   "retenir": "Scores : 6, 3, 3, 2. Interne : 1, 2, 3 permis, 4 refusé. Confidentiel : seule la requête 1 est permise.",
+   "but": "Appliquer une décision contextuelle à chaque accès.",
+   "source": "NIST SP 800-207, « Zero Trust Architecture », août 2020 ⚠ (à vérifier)",
+   "cyber": ""
+  },
+  {
+   "n": 66,
+   "qid": "Q66",
+   "page": 204,
+   "correct": "C",
+   "enonce": "Dans la fraude au RIB de TransLor, quelle mesure aurait le mieux empêché qu’une seule personne crée le fournisseur, change le RIB et valide le paiement ?",
+   "opts": [
+    "Un antivirus plus récent sur le poste de la comptable",
+    "Un chiffrement du disque de la comptable, avec un mot de passe long et renouvelé",
+    "La séparation des tâches entre gestion des fournisseurs et validation",
+    "Une formation annuelle de la comptable aux faux courriels, sans autre changement"
+   ],
+   "expl": [
+    "Faux : il aide contre un logiciel malveillant, pas contre un cumul de droits ou un faux courriel.",
+    "Faux : il protège un disque volé, pas une fraude commise par un compte légitime.",
+    "Aucune personne seule ne contrôle toute la chaîne : le faux RIB aurait été vu par un second regard.",
+    "Utile en complément, mais elle ne supprime pas le cumul de fonctions : une erreur suffit."
+   ],
+   "part": "CONCLUSION",
+   "retenir": "SoD : séparer initier, approuver, exécuter.",
+   "but": "Relier le fil rouge aux principes du cours.",
+   "sondage": false,
+   "source": "NIST SP 800-207, « Zero Trust Architecture », août 2020 ⚠ (à vérifier)",
+   "cyber": ""
+  }
+ ],
+ "ex": [
+  {
+   "num": 7,
+   "page": 29,
+   "titre": "BLP : permis ou refusé ?",
+   "online": true
+  },
+  {
+   "num": 12,
+   "page": 51,
+   "titre": "Biba : l’intégrité de la comptabilité",
+   "online": true
+  },
+  {
+   "num": 13,
+   "page": 53,
+   "titre": "Clark-Wilson : les triplets du TMS",
+   "online": true
+  },
+  {
+   "num": 16,
+   "page": 64,
+   "titre": "DAC : trop de liberté sur le partage",
+   "online": true
+  },
+  {
+   "num": 20,
+   "page": 78,
+   "titre": "RBAC : la matrice des rôles du TMS",
+   "online": true
+  },
+  {
+   "num": 21,
+   "page": 80,
+   "titre": "RBAC : la séparation des tâches",
+   "online": true
+  },
+  {
+   "num": 22,
+   "page": 82,
+   "titre": "RBAC : hiérarchie et explosion de rôles",
+   "online": true
+  },
+  {
+   "num": 28,
+   "page": 101,
+   "titre": "MAC : peut-il lire ?",
+   "online": true
+  },
+  {
+   "num": 31,
+   "page": 110,
+   "titre": "ABAC : évaluer quatre requêtes",
+   "online": true
+  },
+  {
+   "num": 34,
+   "page": 118,
+   "titre": "ABAC : lire et tester une politique",
+   "online": true
+  },
+  {
+   "num": 38,
+   "page": 129,
+   "titre": "OrBAC : associer règles et formules",
+   "online": true
+  },
+  {
+   "num": 40,
+   "page": 136,
+   "titre": "Quel modèle pour quel besoin ?",
+   "online": true
+  },
+  {
+   "num": 42,
+   "page": 141,
+   "titre": "La matrice d’accès : ACL ou capabilities ?",
+   "online": true
+  },
+  {
+   "num": 44,
+   "page": 146,
+   "titre": "Cas fil rouge : la fraude au RIB, version modèles",
+   "online": true
+  },
+  {
+   "num": 45,
+   "page": 149,
+   "titre": "Arrivée, mutation, départ",
+   "online": true
+  },
+  {
+   "num": 47,
+   "page": 154,
+   "titre": "Audit de droits : trouver les anomalies",
+   "online": true
+  },
+  {
+   "num": 49,
+   "page": 158,
+   "titre": "Synthèse : choisir pour son entreprise",
+   "online": true
+  },
+  {
+   "num": 51,
+   "page": 164,
+   "titre": "Unix : qui peut faire quoi ?",
+   "online": true
+  },
+  {
+   "num": 53,
+   "page": 169,
+   "titre": "AGDLP : construire les groupes",
+   "online": true
+  },
+  {
+   "num": 56,
+   "page": 179,
+   "titre": "Conformité : relier pratiques et mesures",
+   "online": true
+  },
+  {
+   "num": 58,
+   "page": 183,
+   "titre": "PAM : réduire l’exposition des administrateurs",
+   "online": true
+  },
+  {
+   "num": 62,
+   "page": 193,
+   "titre": "ReBAC : suivre un chemin de relations",
+   "online": true
+  },
+  {
+   "num": 65,
+   "page": 201,
+   "titre": "Zero Trust : évaluer des accès",
+   "online": true
+  }
+ ],
+ "manifest": [
+  {
+   "page": 6,
+   "tag": "Q01"
+  },
+  {
+   "page": 13,
+   "tag": "Q02"
+  },
+  {
+   "page": 16,
+   "tag": "Q03"
+  },
+  {
+   "page": 23,
+   "tag": "Q04"
+  },
+  {
+   "page": 25,
+   "tag": "Q05"
+  },
+  {
+   "page": 27,
+   "tag": "Q06"
+  },
+  {
+   "page": 29,
+   "tag": "Q07"
+  },
+  {
+   "page": 36,
+   "tag": "Q08"
+  },
+  {
+   "page": 39,
+   "tag": "Q09"
+  },
+  {
+   "page": 46,
+   "tag": "Q10"
+  },
+  {
+   "page": 48,
+   "tag": "Q11"
+  },
+  {
+   "page": 51,
+   "tag": "Q12"
+  },
+  {
+   "page": 53,
+   "tag": "Q13"
+  },
+  {
+   "page": 59,
+   "tag": "Q14"
+  },
+  {
+   "page": 61,
+   "tag": "Q15"
+  },
+  {
+   "page": 64,
+   "tag": "Q16"
+  },
+  {
+   "page": 66,
+   "tag": "Q17"
+  },
+  {
+   "page": 72,
+   "tag": "Q18"
+  },
+  {
+   "page": 76,
+   "tag": "Q19"
+  },
+  {
+   "page": 78,
+   "tag": "Q20"
+  },
+  {
+   "page": 80,
+   "tag": "Q21"
+  },
+  {
+   "page": 82,
+   "tag": "Q22"
+  },
+  {
+   "page": 86,
+   "tag": "Q23"
+  },
+  {
+   "page": 88,
+   "tag": "Q24"
+  },
+  {
+   "page": 93,
+   "tag": "Q25"
+  },
+  {
+   "page": 95,
+   "tag": "Q26"
+  },
+  {
+   "page": 99,
+   "tag": "Q27"
+  },
+  {
+   "page": 101,
+   "tag": "Q28"
+  },
+  {
+   "page": 103,
+   "tag": "Q29"
+  },
+  {
+   "page": 108,
+   "tag": "Q30"
+  },
+  {
+   "page": 110,
+   "tag": "Q31"
+  },
+  {
+   "page": 114,
+   "tag": "Q32"
+  },
+  {
+   "page": 116,
+   "tag": "Q33"
+  },
+  {
+   "page": 118,
+   "tag": "Q34"
+  },
+  {
+   "page": 120,
+   "tag": "Q35"
+  },
+  {
+   "page": 125,
+   "tag": "Q36"
+  },
+  {
+   "page": 127,
+   "tag": "Q37"
+  },
+  {
+   "page": 129,
+   "tag": "Q38"
+  },
+  {
+   "page": 132,
+   "tag": "Q39"
+  },
+  {
+   "page": 136,
+   "tag": "Q40"
+  },
+  {
+   "page": 138,
+   "tag": "Q41"
+  },
+  {
+   "page": 141,
+   "tag": "Q42"
+  },
+  {
+   "page": 144,
+   "tag": "Q43"
+  },
+  {
+   "page": 146,
+   "tag": "Q44"
+  },
+  {
+   "page": 149,
+   "tag": "Q45"
+  },
+  {
+   "page": 151,
+   "tag": "Q46"
+  },
+  {
+   "page": 154,
+   "tag": "Q47"
+  },
+  {
+   "page": 156,
+   "tag": "Q48"
+  },
+  {
+   "page": 158,
+   "tag": "Q49"
+  },
+  {
+   "page": 162,
+   "tag": "Q50"
+  },
+  {
+   "page": 164,
+   "tag": "Q51"
+  },
+  {
+   "page": 167,
+   "tag": "Q52"
+  },
+  {
+   "page": 169,
+   "tag": "Q53"
+  },
+  {
+   "page": 171,
+   "tag": "Q54"
+  },
+  {
+   "page": 177,
+   "tag": "Q55"
+  },
+  {
+   "page": 179,
+   "tag": "Q56"
+  },
+  {
+   "page": 181,
+   "tag": "Q57"
+  },
+  {
+   "page": 183,
+   "tag": "Q58"
+  },
+  {
+   "page": 185,
+   "tag": "Q59"
+  },
+  {
+   "page": 189,
+   "tag": "Q60"
+  },
+  {
+   "page": 191,
+   "tag": "Q61"
+  },
+  {
+   "page": 193,
+   "tag": "Q62"
+  },
+  {
+   "page": 197,
+   "tag": "Q63"
+  },
+  {
+   "page": 199,
+   "tag": "Q64"
+  },
+  {
+   "page": 201,
+   "tag": "Q65"
+  },
+  {
+   "page": 204,
+   "tag": "Q66"
+  },
+  {
+   "page": 207,
+   "tag": "TEST"
+  }
+ ]
+}
