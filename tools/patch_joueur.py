@@ -88,13 +88,14 @@ def patch_joueur(s):
     s = sub(s, '<h1 class="mono" style="color:#29D3FF">LAN LIVE</h1><p>Sécurité des accès : ACL, VLAN, annuaires, protocoles.</p>',
             '<h1 class="mono" style="color:#29D3FF">JEU 25</h1><p>Modèles de contrôle d’accès : DAC, MAC, RBAC, ABAC…</p>', what='accueil')
     s = sub(s, '<p>Votre pseudo :</p>', '''<p>Votre avatar :</p><div id="avs" style="display:flex;flex-wrap:wrap;gap:6px">${AC.AV.map(a => `<button class="btn alt sm" style="font-size:1.5em;padding:.15em .4em;${(me.av || AC.AV[0]) === a ? 'outline:3px solid #56B4E9' : ''}" onclick="setAv('${a}')">${a}</button>`).join('')}</div><p>Votre pseudo :</p>''', what='avatar')
+    s = sub(s, '<input id="nm" maxlength="16"', '<input id="nm" value="${AC.esc(me.last || \'\')}" maxlength="16"', what='nm-prefill')
     s = sub(s, '<p id="err" class="ko"></p>', '<label class="muted" style="display:block;margin:8px 0"><input type="checkbox" id="re"> Je reprends ma partie (j’ai changé d’appareil : même pseudo)</label><p id="err" class="ko"></p>', what='reprise')
     s = sub(s, "me.n = n; save(); send({k:'J', n});", "me.n = n; me.av = me.av || AC.AV[0]; save(); send({k:'J', n, av:me.av, re:$('re') && $('re').checked ? 1 : 0});", what='join')
     s = sub(s, "window.join = () => {", "window.setAv = a => { me.av = a; save(); const n = $('nm') ? $('nm').value : ''; render(); if ($('nm')) $('nm').value = n; };\nwindow.join = () => {", what='setAv')
     s = sub(s, "send({k:'J', n:me.n}); }   // le PC enseignant", "send({k:'J', n:me.n, av:me.av || ''}); }   // le PC enseignant", what='rejoin')
     # réception : nouvelle partie, accusés de signalement
     s = sub(s, "AC.Assembler(s => { pub = s; recvAt = Date.now(); status = 'connecté'; render(); })",
-            "AC.Assembler(s => { pub = s; recvAt = Date.now(); status = 'connecté'; if (pub.gen && me.gen !== pub.gen) { me.gen = pub.gen; sent = {}; draft = {}; save(); } if (pub.cur) { me.lq = pub.cur.qid; } (pub.rk || []).forEach(id => { const r = RQ.find(x => x.id === id); if (r && !r.ack) { r.ack = 1; saveRQ(); } }); render(); })", what='assembler')
+            "AC.Assembler(s => { pub = s; recvAt = Date.now(); status = 'connecté'; if (pub.gen && me.gen !== pub.gen) { if (me.gen && me.n) { me.last = me.n; me.n = ''; } me.gen = pub.gen; sent = {}; draft = {}; save(); } if (pub.cur) { me.lq = pub.cur.qid; } (pub.rk || []).forEach(id => { const r = RQ.find(x => x.id === id); if (r && !r.ack) { r.ack = 1; saveRQ(); } }); render(); })", what='assembler')
     # bandeau : Question N · page p
     s = sub(s, '<span class="tag" style="font-size:1.05em"><b>Question ${AC.num(c.qid)}</b> · ${AC.esc(c.gt)}</span><span class="tag">diapo ${c.sl} / ${c.tot}</span>',
             '<span class="tag" style="font-size:1.05em"><b>Question ${AC.num(c.qid)}</b> · page ${c.sl}</span>', what='bandeau')

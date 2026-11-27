@@ -40,7 +40,7 @@ window.nouvellePartie = () => {
   }
   if (!confirm('NOUVELLE PARTIE : remet tout à zéro (joueurs, points, Questions jouées, écran projeté et écrans des joueurs). Les signalements sont conservés (exportez-les avant si besoin). Continuer ?')) return;
   G.T = null; G.pl = {}; G.cur = null; G.played = {}; G.qdone = {}; G.ended = false; G.pend = null; G.lastSlide = null; G.gen = now();
-  ui.note = 'Nouvelle partie : tout est remis à zéro. Les joueurs se réinscrivent automatiquement avec leur pseudo.'; tab = 'pilot'; commit(true);
+  ui.note = 'Nouvelle partie : tout est remis à zéro. Les joueurs reviennent à l’écran de saisie, pseudo et avatar pré-remplis.'; tab = 'pilot'; commit(true);
 };
 const RST = {a:'● à approuver par l’enseignant', ok:'✓ approuvé', ko:'✗ rejeté'};
 function signTab() {

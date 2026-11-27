@@ -286,7 +286,7 @@ if (!me.pid) me.pid = 'p' + AC.rid(8);
 const save = () => { try { localStorage.setItem(LS, JSON.stringify(me)); localStorage.setItem(LS + '_s', JSON.stringify(sent)); } catch (e) {} };
 const relay = new AC.Relay(RELAY, SID);
 const send = o => relay.post(relay.tP, Object.assign({pid:me.pid}, o));
-relay.sub(relay.tH, 'all', AC.Assembler(s => { pub = s; recvAt = Date.now(); status = 'connecté'; if (pub.gen && me.gen !== pub.gen) { me.gen = pub.gen; sent = {}; draft = {}; save(); } if (pub.cur) { me.lq = pub.cur.qid; } (pub.rk || []).forEach(id => { const r = RQ.find(x => x.id === id); if (r && !r.ack) { r.ack = 1; saveRQ(); } }); render(); }), st => { if (st !== 'ok') { status = 'reconnexion…'; tinyStatus(); } });
+relay.sub(relay.tH, 'all', AC.Assembler(s => { pub = s; recvAt = Date.now(); status = 'connecté'; if (pub.gen && me.gen !== pub.gen) { if (me.gen && me.n) { me.last = me.n; me.n = ''; } me.gen = pub.gen; sent = {}; draft = {}; save(); } if (pub.cur) { me.lq = pub.cur.qid; } (pub.rk || []).forEach(id => { const r = RQ.find(x => x.id === id); if (r && !r.ack) { r.ack = 1; saveRQ(); } }); render(); }), st => { if (st !== 'ok') { status = 'reconnexion…'; tinyStatus(); } });
 function tinyStatus() { const e = $('st'); if (e) e.textContent = status; }
 const key = () => pub && pub.cur ? pub.cur.qid + '#' + pub.cur.k : '';
 const myRec = () => pub && pub.me && pub.me[me.pid];
@@ -552,7 +552,7 @@ function render() {
   let h;
   if (!me.n) {
     h = `<div class="card" style="margin:16px"><h1 class="mono" style="color:#29D3FF">JEU 25</h1><p>Modèles de contrôle d’accès : DAC, MAC, RBAC, ABAC…</p><p class="muted">${AC.PORTS(10)}</p>
-      <p>Votre avatar :</p><div id="avs" style="display:flex;flex-wrap:wrap;gap:6px">${AC.AV.map(a => `<button class="btn alt sm" style="font-size:1.5em;padding:.15em .4em;${(me.av || AC.AV[0]) === a ? 'outline:3px solid #56B4E9' : ''}" onclick="setAv('${a}')">${a}</button>`).join('')}</div><p>Votre pseudo :</p><input id="nm" maxlength="16" style="width:100%;padding:12px;font-size:1.1em;background:#050A14;color:#E8F1FF;border:2px solid #1F3556;border-radius:10px" onkeydown="if(event.key==='Enter')join()" autofocus>
+      <p>Votre avatar :</p><div id="avs" style="display:flex;flex-wrap:wrap;gap:6px">${AC.AV.map(a => `<button class="btn alt sm" style="font-size:1.5em;padding:.15em .4em;${(me.av || AC.AV[0]) === a ? 'outline:3px solid #56B4E9' : ''}" onclick="setAv('${a}')">${a}</button>`).join('')}</div><p>Votre pseudo :</p><input id="nm" value="${AC.esc(me.last || '')}" maxlength="16" style="width:100%;padding:12px;font-size:1.1em;background:#050A14;color:#E8F1FF;border:2px solid #1F3556;border-radius:10px" onkeydown="if(event.key==='Enter')join()" autofocus>
       <label class="muted" style="display:block;margin:8px 0"><input type="checkbox" id="re"> Je reprends ma partie (j’ai changé d’appareil : même pseudo)</label><p id="err" class="ko"></p><button class="btn go xl" onclick="join()">Se connecter au réseau</button></div>`;
     $('app').innerHTML = h + `<div class="foot" style="padding-bottom:64px">${AC.FOOT}<br><span id="st">${status}</span></div><div id="fx">${fxHtml()}</div>`; return;
   }
